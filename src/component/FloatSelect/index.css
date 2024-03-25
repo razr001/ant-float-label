@@ -1,0 +1,8 @@
+.ant-float-label-form-select .ant-select-selector {
+	border: none !important;
+	box-shadow: none !important;
+}
+
+.ant-float-label-form-select{
+	height: auto !important;
+}

@@ -1,0 +1,33 @@
+{
+  "name": "ant-float-label",
+  "version": "1.0.3",
+  "description": "Antd 5 form style similar to MUI",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "build": "rollup -c --bundleConfigAsCjs"
+  },
+  "files": [
+    "/dist",
+    "LICENSE"
+  ],
+  "devDependencies": {
+    "@rollup/plugin-typescript": "^11.1.6",
+    "@types/react": "^18.2.69",
+    "@types/react-dom": "^18.2.22",
+    "rollup": "^4.13.0",
+    "rollup-plugin-copy": "^3.5.0",
+    "rollup-plugin-delete": "^2.0.0",
+    "rollup-plugin-dts": "^6.1.0",
+    "rollup-plugin-import-css": "^3.5.0",
+    "tslib": "^2.6.2",
+    "typescript": "^5.4.3"
+  },
+  "dependencies": {
+    "antd": "^5.15.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}

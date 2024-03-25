@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "module": "ES2020",
+    "declaration": true,
+    "removeComments": false,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "es2020",
+    "inlineSourceMap": true,
+    "outDir": "dist",
+    "skipLibCheck": true,
+    "strict": true,
+    "moduleResolution":"Node",
+    "esModuleInterop":true,
+    "allowImportingTsExtensions": false,
+    "jsx": "react-jsx"
+  },
+  "include": [
+    "src",
+  ],
+  "exclude": [
+    "demo",
+    "test",
+    "node_modules"
+  ]
+}

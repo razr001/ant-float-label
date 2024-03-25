@@ -1,0 +1,50 @@
+.ant-float-label-box{
+  position: relative;
+  line-height: normal;
+}
+
+.ant-float-label-box-label {
+  position: absolute;
+  max-width: 99%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  left: 0;
+  top: 0;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  font-weight: 400;
+  transform-origin: top left;
+  pointer-events: none;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  transition: color 200ms cubic-bezier(0, 0, 0.2, 1) 0ms,
+    transform 200ms cubic-bezier(0, 0, 0.2, 1) 0ms,
+    max-width 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+}
+
+.ant-float-label-box-fieldset {
+  padding: 0 8px;
+  position: absolute;
+  top: -5px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0;
+  pointer-events: none;
+  text-align: left;
+  box-sizing: border-box;
+  min-width: 0%;
+}
+.ant-float-label-box-legend {
+  width: auto;
+  overflow: hidden;
+  display: block;
+  padding: 0;
+  height: 11px;
+  font-size: 0.85rem;
+  visibility: hidden;
+  transition: max-width 100ms cubic-bezier(0.0, 0, 0.2, 1) 50ms;
+  white-space: nowrap;
+  padding-inline: 0;
+}
