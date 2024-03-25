@@ -15,6 +15,7 @@ import {
 	FloatTreeSelect,
 	FloatAutoComplete,
 	FloatTimePicker,
+	FloatPassword
 } from "ant-float-label";
 ```
 
