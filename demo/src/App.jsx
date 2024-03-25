@@ -9,6 +9,7 @@ import {
 	FloatTreeSelect,
 	FloatAutoComplete,
 	FloatTimePicker,
+	FloatPassword,
 } from "../../dist";
 import "./App.css"
 
@@ -79,6 +80,7 @@ function App() {
 				<FloatInput placeholder="Input Small" size="small" />
 				<FloatInput placeholder="Input Warning" status="warning" />
 				<FloatInput placeholder="Input error" status="error" />
+				<FloatPassword placeholder="Password" />
 			</Space>
 			<br />
 			<br />

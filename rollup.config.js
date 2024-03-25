@@ -3,7 +3,7 @@ import del from "rollup-plugin-delete";
 import css from "rollup-plugin-import-css";
 import copy from "rollup-plugin-copy";
 
-const banner = '"use client" \nimport "./index.css"'
+const banner = 'import "./index.css"'
 
 export default [{
   input: "./src/index.ts",
