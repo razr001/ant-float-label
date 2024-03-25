@@ -82,7 +82,7 @@ export function FloatAutoComplete({
 			haveValue={!!inputValue}
 			width={style?.width}
 			height={style?.height}
-			status={restProps.status}
+			status={restProps.status || (restProps["aria-invalid"] ? "error" : undefined)}
 		>
 			<AutoComplete
 				style={{

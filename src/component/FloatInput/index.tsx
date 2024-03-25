@@ -68,7 +68,7 @@ export function FloatInput({
 			haveValue={!!inputValue}
 			width={style?.width}
 			height={style?.height}
-			status={restProps.status}
+			status={restProps.status || (restProps["aria-invalid"] ? "error" : undefined)}
 		>
 			<Input
 				style={{ ...style, width:"100%", border: "none"}}

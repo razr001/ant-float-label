@@ -72,7 +72,7 @@ export function FloatPassword({
 			haveValue={!!inputValue}
 			width={style?.width}
 			height={style?.height}
-			status={restProps.status}
+			status={restProps.status || (restProps["aria-invalid"] ? "error" : undefined)}
 		>
 			<Password
 				style={{ ...style, width: "100%", border: "none" }}

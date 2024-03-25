@@ -80,7 +80,7 @@ export function FloatRangePicker({
 			haveValue={haveValue}
 			width={style?.width}
 			height={style?.height}
-			status={restProps.status}
+			status={restProps.status || (restProps["aria-invalid"] ? "error" : undefined)}
 		>
 			<RangePicker
 				style={{...style, width:"100%", border: "none"}}

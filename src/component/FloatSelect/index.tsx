@@ -80,7 +80,7 @@ export function FloatSelect({
 			haveValue={haveValue}
 			width={style?.width}
 			height={style?.height}
-			status={restProps.status}
+			status={restProps.status || (restProps["aria-invalid"] ? "error" : undefined)}
 		>
 			<Select
 				style={{ ...style, width:"100%", border: "none" }}

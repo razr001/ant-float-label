@@ -57,7 +57,7 @@ export function FloatInputNumber({
 			haveValue={!!inputValue}
 			width={style?.width}
 			height={style?.height}
-			status={restProps.status}
+			status={restProps.status || (restProps["aria-invalid"] ? "error" : undefined)}
 		>
 			<InputNumber
 				style={{...style, width:"100%", border: "none"}}

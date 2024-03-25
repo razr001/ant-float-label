@@ -79,7 +79,7 @@ export function FloatTimePicker({
 			haveValue={haveValue}
 			width={style?.width}
 			height={style?.height}
-			status={restProps.status}
+			status={restProps.status || (restProps["aria-invalid"] ? "error" : undefined)}
 		>
 			<TimePicker
 				style={{
