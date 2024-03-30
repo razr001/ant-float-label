@@ -1,4 +1,4 @@
-import { Space } from "antd";
+import { ConfigProvider, Space, theme } from "antd";
 import {
 	FloatDatePicker,
 	FloatInput,
@@ -11,8 +11,7 @@ import {
 	FloatTimePicker,
 	FloatPassword,
 } from "../../dist";
-import "./App.css"
-
+import {useState, useEffect, useCallback} from 'react'
 
 const options = [
 	{
@@ -71,8 +70,31 @@ const treeData = [
 ];
 
 function App() {
+
+	const [darkMode, setDarkMode] = useState(false);
+  const windowQuery = window.matchMedia("(prefers-color-scheme:dark)");
+
+  const darkModeChange = useCallback((event) => {
+    console.log(event.matches ? true : false);
+    setDarkMode(event.matches ? true : false);
+  }, []);
+
+
+
+  useEffect(() => {
+    windowQuery.addEventListener("change", darkModeChange);
+    return () => {
+      windowQuery.removeEventListener("change", darkModeChange);
+    };
+  }, [windowQuery, darkModeChange]);
+
+	useEffect(() => {
+    console.log(windowQuery.matches ? true : false);
+    setDarkMode(windowQuery.matches ? true : false);
+  }, []);
+
 	return (
-		<>
+		<ConfigProvider theme={{algorithm: darkMode ? theme.darkAlgorithm : theme.defaultAlgorithm }}>
 			<h1>Antd 5 form style similar to MUI</h1>
 			<Space>
 				<FloatInput placeholder="Input Large" size="large" />
@@ -144,7 +166,7 @@ function App() {
 					allowClear
 				/>
 			</Space>
-		</>
+		</ConfigProvider>
 	);
 }
 

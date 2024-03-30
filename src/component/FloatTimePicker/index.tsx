@@ -87,6 +87,7 @@ export function FloatTimePicker({
 					width: "100%",
 					border: "none",
 				}}
+				variant="borderless"
 				{...restProps}
 				onFocus={handleFocus}
 				onBlur={handleBlur}

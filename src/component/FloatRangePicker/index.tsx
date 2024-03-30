@@ -15,7 +15,6 @@ export function FloatRangePicker({
 	value,
 	defaultValue,
 	style,
-	size,
 	onChange,
 	...restProps
 }: FloatRangePickerProps) {
@@ -84,12 +83,12 @@ export function FloatRangePicker({
 		>
 			<RangePicker
 				style={{...style, width:"100%", border: "none"}}
+				variant="borderless"
 				{...restProps}
 				onFocus={handleFocus}
 				onBlur={handleBlur}
 				value={value}
 				defaultValue={defaultValue}
-				size={size}
 				onChange={handleChange}
 				rootClassName="ant-float-label-form-picker"
 				placeholder={haveValue ? ["", ""] : placeholder}

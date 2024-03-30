@@ -75,6 +75,7 @@ export function FloatDatePicker({
 		>
 			<DatePicker
 				style={{...style, width:"100%", border: "none" }}
+				variant="borderless"
 				{...restProps}
 				onFocus={handleFocus}
 				onBlur={handleBlur}

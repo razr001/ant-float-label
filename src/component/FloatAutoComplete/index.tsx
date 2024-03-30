@@ -90,6 +90,7 @@ export function FloatAutoComplete({
 					...style,
 					border: "none",
 				}}
+				variant="borderless"
 				{...restProps}
 				onFocus={handleFocus}
 				onBlur={handleBlur}

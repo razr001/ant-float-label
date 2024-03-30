@@ -72,6 +72,7 @@ export function FloatInput({
 		>
 			<Input
 				style={{ ...style, width:"100%", border: "none"}}
+				variant="borderless"
 				{...restProps}
 				onFocus={handleFocus}
 				onBlur={handleBlur}
