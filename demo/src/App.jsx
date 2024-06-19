@@ -11,7 +11,7 @@ import {
   FloatTimePicker,
   FloatPassword,
   FloatFormItem,
-} from "../../src";
+} from "../../dist";
 import { useState, useEffect, useCallback } from "react";
 import UseForm from "./UseForm";
 import { options, treeData } from "./data";

@@ -11,7 +11,7 @@ import {
   FloatTimePicker,
   FloatPassword,
   FloatFormItem,
-} from "../../src";
+} from "../../dist";
 import { useEffect } from "react";
 import { options, treeData } from "./data";
 import dayjs from "dayjs";
@@ -26,7 +26,7 @@ export default function UseForm() {
 
   useEffect(() => {
     form.setFieldsValue({
-      // floatAutoComplete: "11111111111",
+      floatAutoComplete: "11111111111",
       rangePicker: [dayjs("2021-05-01"), dayjs("2024-04-15")],
       // floatSelect: 0,
       // floatTreeSelect: "leaf3",
