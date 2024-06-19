@@ -2,8 +2,11 @@ import { DatePicker, DatePickerProps } from "antd";
 import { useCallback, useEffect, useRef, useState } from "react";
 import "./index.css";
 import { FloattingLabelBox } from "../FloattingLabelBox";
+import { useValueHandle } from "../../hook/useValueHandle";
 
-export interface FloatDatePickerProps extends DatePickerProps {}
+export interface FloatDatePickerProps extends DatePickerProps {
+	required?:boolean
+}
 
 export function FloatDatePicker({
 	placeholder,
@@ -12,41 +15,24 @@ export function FloatDatePicker({
 	value,
 	defaultValue,
 	style,
-	size,
+	required,
 	onChange,
+	
 	...restProps
 }: FloatDatePickerProps) {
-	const initFlag = useRef(false);
-	const [isFocus, setIsFocus] = useState(false);
-	const [inputValue, setInputValue] = useState(defaultValue ?? value);
+	const { hasValue, handleChange, handleBlur, handleFocus, isFocus } = useValueHandle({
+    id: restProps.id,
+    defaultValue,
+    value,
+    onFocus,
+    onBlur,
+  });
 
-	const handleFocus = useCallback<
-		Exclude<DatePickerProps["onFocus"], undefined>
-	>(
-		(event, info) => {
-			setIsFocus(true);
-			if (onFocus) {
-				onFocus(event, info);
-			}
-		},
-		[onFocus]
-	);
-
-	const handleBlur = useCallback<Exclude<DatePickerProps["onBlur"], undefined>>(
-		(event, info) => {
-			setIsFocus(false);
-			if (onBlur) {
-				onBlur(event, info);
-			}
-		},
-		[onBlur]
-	);
-
-	const handleChange = useCallback<
+	const changeHandler = useCallback<
 		Exclude<DatePickerProps["onChange"], undefined>
 	>(
 		(value, dateString) => {
-			setInputValue(value);
+			handleChange(value);
 			if (onChange) {
 				onChange(value, dateString);
 			}
@@ -54,24 +40,15 @@ export function FloatDatePicker({
 		[onChange]
 	);
 
-	useEffect(() => {
-		if (initFlag.current) {
-			setInputValue(value);
-		}
-		initFlag.current = true;
-		return () => {
-			initFlag.current = false;
-		};
-	}, [value]);
-
 	return (
 		<FloattingLabelBox
 			label={placeholder}
 			focused={isFocus}
-			haveValue={!!inputValue}
+			haveValue={hasValue}
 			width={style?.width}
 			height={style?.height}
 			status={restProps.status || (restProps["aria-invalid"] ? "error" : undefined)}
+			required={required}
 		>
 			<DatePicker
 				style={{...style, width:"100%", border: "none" }}
@@ -81,8 +58,7 @@ export function FloatDatePicker({
 				onBlur={handleBlur}
 				value={value}
 				defaultValue={defaultValue}
-				size={size}
-				onChange={handleChange}
+				onChange={changeHandler}
 				rootClassName="ant-float-label-form-picker"
 				placeholder=""
 			/>

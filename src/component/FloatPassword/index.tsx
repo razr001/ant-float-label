@@ -1,90 +1,77 @@
 import { Input, InputProps } from "antd";
 import {
-	InputHTMLAttributes,
-	useCallback,
-	useEffect,
-	useRef,
-	useState,
+  InputHTMLAttributes,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
 } from "react";
 import { FloattingLabelBox } from "../FloattingLabelBox";
 import { PasswordProps } from "antd/es/input";
-import "./index.css"
+import "./index.css";
+import { useValueHandle } from "../../hook/useValueHandle";
 
 const { Password } = Input;
 
-export interface FloatPasswordProps extends PasswordProps  {}
+export interface FloatPasswordProps extends PasswordProps {
+  required?:boolean
+}
 
 export function FloatPassword({
-	placeholder,
-	onFocus,
-	onBlur,
-	value,
-	defaultValue,
-	style,
-	size,
-	...restProps
+  placeholder,
+  onFocus,
+  onBlur,
+  value,
+  defaultValue,
+  style,
+  onChange,
+  required,
+  ...restProps
 }: FloatPasswordProps) {
-	const initFlag = useRef(false);
-	const [isFocus, setIsFocus] = useState(false);
-	const [inputValue, setInputValue] = useState<
-		InputHTMLAttributes<HTMLInputElement>["value"] | bigint
-	>(defaultValue ?? value);
+  const { hasValue, handleChange, handleBlur, handleFocus, isFocus } =
+    useValueHandle({
+      id: restProps.id,
+      defaultValue,
+      value,
+      onFocus,
+      onBlur,
+    });
 
-	const handleFocus = useCallback<
-		Exclude<React.FocusEventHandler<HTMLInputElement>, undefined>
-	>(
-		(e) => {
-			setIsFocus(true);
-			if (onFocus) {
-				onFocus(e);
-			}
-		},
-		[onFocus]
-	);
+  const changeHanlder = useCallback<
+    Exclude<PasswordProps["onChange"], undefined>
+  >(
+    (value) => {
+      handleChange(value);
+      if (onChange) {
+        onChange(value);
+      }
+    },
+    [onChange]
+  );
 
-	const handleBlur = useCallback<
-		Exclude<React.FocusEventHandler<HTMLInputElement>, undefined>
-	>(
-		(e) => {
-			setIsFocus(false);
-			setInputValue(e.target.value);
-			if (onBlur) {
-				onBlur(e);
-			}
-		},
-		[onBlur]
-	);
-
-	useEffect(() => {
-		if (initFlag.current) {
-			setInputValue(value);
-		}
-		initFlag.current = true;
-		return () => {
-			initFlag.current = false;
-		};
-	}, [value]);
-
-	return (
-		<FloattingLabelBox
-			label={placeholder}
-			focused={isFocus}
-			haveValue={!!inputValue}
-			width={style?.width}
-			height={style?.height}
-			status={restProps.status || (restProps["aria-invalid"] ? "error" : undefined)}
-		>
-			<Password
-				style={{ ...style, width: "100%", border: "none" }}
-				variant="borderless"
-				{...restProps}
-				onFocus={handleFocus}
-				onBlur={handleBlur}
-				value={value}
-				defaultValue={defaultValue}
-				size={size}
-				rootClassName="ant-float-label-form-input-password"
-			/>
-		</FloattingLabelBox>
-	);
+  return (
+    <FloattingLabelBox
+      label={placeholder}
+      focused={isFocus}
+      haveValue={hasValue}
+      width={style?.width}
+      height={style?.height}
+      required={required}
+      status={
+        restProps.status || (restProps["aria-invalid"] ? "error" : undefined)
+      }
+    >
+      <Password
+        style={{ ...style, width: "100%", border: "none" }}
+        variant="borderless"
+        {...restProps}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+        value={value}
+        defaultValue={defaultValue}
+				onChange={changeHanlder}
+        rootClassName="ant-float-label-form-input-password"
+      />
+    </FloattingLabelBox>
+  );
 }

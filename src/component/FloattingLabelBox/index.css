@@ -1,4 +1,4 @@
-.ant-float-label-box{
+.ant-float-label-box {
   position: relative;
   line-height: normal;
 }
@@ -44,8 +44,15 @@
   height: 11px !important;
   font-size: 0.85rem !important;
   visibility: hidden;
-  transition: max-width 100ms cubic-bezier(0.0, 0, 0.2, 1) 50ms;
+  transition: max-width 100ms cubic-bezier(0, 0, 0.2, 1) 50ms;
   white-space: nowrap;
   padding-inline: 0 !important;
-
 }
+
+/* .ant-float-label-box-label-required::after {
+  content: ":";
+  position: relative;
+  margin-block: 0;
+  margin-inline-start: 2px;
+  margin-inline-end: 8px;
+} */

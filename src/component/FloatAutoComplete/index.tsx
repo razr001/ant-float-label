@@ -1,105 +1,74 @@
-import { AutoComplete, AutoCompleteProps } from "antd";
+import { AutoComplete, AutoCompleteProps, FormInstance } from "antd";
 import {
-	InputHTMLAttributes,
-	useCallback,
-	useEffect,
-	useRef,
-	useState,
+  useCallback,
 } from "react";
 import { FloattingLabelBox } from "../FloattingLabelBox";
-import "./index.css"
+import "./index.css";
+import { useValueHandle } from "../../hook/useValueHandle";
+import { FormContext } from "antd/es/form/context";
 
-export interface FloatAutoCompleteProps extends AutoCompleteProps {}
+export interface FloatAutoCompleteProps extends AutoCompleteProps {
+  required?:boolean
+}
 
 export function FloatAutoComplete({
-	placeholder,
-	onFocus,
-	onBlur,
-	value,
-	defaultValue,
-	style,
-	size,
-	onChange,
-	...restProps
+  placeholder,
+  onFocus,
+  onBlur,
+  value,
+  defaultValue,
+  style,
+  onChange,
+  required,
+  ...restProps
 }: FloatAutoCompleteProps) {
-	const initFlag = useRef(false);
-	const [isFocus, setIsFocus] = useState(false);
-	const [inputValue, setInputValue] = useState<
-		InputHTMLAttributes<HTMLInputElement>["value"] | bigint
-	>(defaultValue ?? value);
+  const { hasValue, handleChange, handleBlur, handleFocus, isFocus } = useValueHandle({
+    id: restProps.id,
+    defaultValue,
+    value,
+    onFocus,
+    onBlur,
+  });
 
-	const handleFocus = useCallback<
-		Exclude<React.FocusEventHandler<HTMLInputElement>, undefined>
-	>(
-		(e) => {
-			setIsFocus(true);
-			if (onFocus) {
-				onFocus(e);
-			}
-		},
-		[onFocus]
-	);
+  const changeHandler = useCallback<
+    Exclude<AutoCompleteProps["onChange"], undefined>
+  >(
+    (value, option) => {
+      handleChange(value);
+      if (onChange) {
+        onChange(value, option);
+      }
+    },
+    [onChange]
+  );
 
-	const handleBlur = useCallback<
-		Exclude<React.FocusEventHandler<HTMLInputElement>, undefined>
-	>(
-		(e) => {
-			setIsFocus(false);
-			setInputValue(e.target.value);
-			if (onBlur) {
-				onBlur(e);
-			}
-		},
-		[onBlur]
-	);
-
-	const handleChange = useCallback<
-		Exclude<AutoCompleteProps["onChange"], undefined>
-	>(
-		(value, option) => {
-			setInputValue(value);
-			if (onChange) {
-				onChange(value, option);
-			}
-		},
-		[onChange]
-	);
-
-	useEffect(() => {
-		if (initFlag.current) {
-			setInputValue(value);
-		}
-		initFlag.current = true;
-		return () => {
-			initFlag.current = false;
-		};
-	}, [value]);
-
-	return (
-		<FloattingLabelBox
-			label={placeholder}
-			focused={isFocus}
-			haveValue={!!inputValue}
-			width={style?.width}
-			height={style?.height}
-			status={restProps.status || (restProps["aria-invalid"] ? "error" : undefined)}
-		>
-			<AutoComplete
-				style={{
-					width: "100%",
-					...style,
-					border: "none",
-				}}
-				variant="borderless"
-				{...restProps}
-				onFocus={handleFocus}
-				onBlur={handleBlur}
-				value={value}
-				defaultValue={defaultValue}
-				size={size}
-				onChange={handleChange}
+  return (
+    <FloattingLabelBox
+      label={placeholder}
+      required={required}
+      focused={isFocus}
+      haveValue={hasValue}
+      width={style?.width}
+      height={style?.height}
+      status={
+        restProps.status || (restProps["aria-invalid"] ? "error" : undefined)
+      }
+    >
+      <AutoComplete
+        style={{
+          width: "100%",
+          ...style,
+          border: "none",
+        }}
+        variant="borderless"
+        {...restProps}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+        value={value}
+        defaultValue={defaultValue}
+        onChange={changeHandler}
         rootClassName="ant-float-label-form-auto-complete"
-			/>
-		</FloattingLabelBox>
-	);
+      />
+    </FloattingLabelBox>
+  );
 }

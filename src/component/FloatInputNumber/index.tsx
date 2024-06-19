@@ -2,74 +2,67 @@ import { InputNumber, InputNumberProps } from "antd";
 import { useCallback, useEffect, useRef, useState } from "react";
 import "./index.css";
 import { FloattingLabelBox } from "../FloattingLabelBox";
+import { useValueHandle } from "../../hook/useValueHandle";
 
-export interface FloatInputNumberProps extends InputNumberProps {}
+export interface FloatInputNumberProps extends InputNumberProps {
+  required?:boolean
+}
 
 export function FloatInputNumber({
-	placeholder,
-	onFocus,
-	onBlur,
-	value,
-	defaultValue,
-	style,
-	size,
-	...restProps
+  placeholder,
+  onFocus,
+  onBlur,
+  value,
+  defaultValue,
+  style,
+  onChange,
+  required,
+  ...restProps
 }: FloatInputNumberProps) {
-	const initFlag = useRef(false);
-	const [isFocus, setIsFocus] = useState(false);
-	const [inputValue, setInputValue] = useState(defaultValue ?? value);
+  const { hasValue, handleChange, handleBlur, handleFocus, isFocus } =
+    useValueHandle({
+      id: restProps.id,
+      defaultValue,
+      value,
+      onFocus,
+      onBlur,
+    });
 
-	const handleFocus: React.FocusEventHandler<HTMLInputElement> = useCallback(
-		(e) => {
-			setIsFocus(true);
-			if (onFocus) {
-				onFocus(e);
-			}
-		},
-		[onFocus]
-	);
+  const changeHanlder = useCallback<
+    Exclude<InputNumberProps["onChange"], undefined>
+  >(
+    (value) => {
+      handleChange(value);
+      if (onChange) {
+        onChange(value);
+      }
+    },
+    [onChange]
+  );
 
-	const handleBlur: React.FocusEventHandler<HTMLInputElement> = useCallback(
-		(e) => {
-			setIsFocus(false);
-			setInputValue(e.target.value);
-			if (onBlur) {
-				onBlur(e);
-			}
-		},
-		[onBlur]
-	);
-
-	useEffect(() => {
-		if (initFlag.current) {
-			setInputValue(value);
-		}
-		initFlag.current = true;
-		return () => {
-			initFlag.current = false;
-		};
-	}, [value]);
-
-	return (
-		<FloattingLabelBox
-			label={placeholder}
-			focused={isFocus}
-			haveValue={!!inputValue}
-			width={style?.width}
-			height={style?.height}
-			status={restProps.status || (restProps["aria-invalid"] ? "error" : undefined)}
-		>
-			<InputNumber
-				style={{...style, width:"100%", border: "none"}}
-				variant="borderless"
-				{...restProps}
-				onFocus={handleFocus}
-				onBlur={handleBlur}
-				value={value}
-				defaultValue={defaultValue}
-				size={size}
-				rootClassName="ant-float-label-form-input-number"
-			/>
-		</FloattingLabelBox>
-	);
+  return (
+    <FloattingLabelBox
+      label={placeholder}
+      focused={isFocus}
+      haveValue={hasValue}
+      width={style?.width}
+      height={style?.height}
+      required={required}
+      status={
+        restProps.status || (restProps["aria-invalid"] ? "error" : undefined)
+      }
+    >
+      <InputNumber
+        style={{ ...style, width: "100%", border: "none" }}
+        variant="borderless"
+        {...restProps}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+        value={value}
+        defaultValue={defaultValue}
+        onChange={changeHanlder}
+        rootClassName="ant-float-label-form-input-number"
+      />
+    </FloattingLabelBox>
+  );
 }
