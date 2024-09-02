@@ -3,7 +3,12 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { FloattingLabelBox } from "../FloattingLabelBox";
 import { useValueHandle } from "../../hook/useValueHandle";
 
-export type FloatCascadertProps = CascaderProps & { required?: boolean };
+export interface FloatCascadertProps  extends CascaderProps{
+  multiple?:true;
+  required?:boolean;
+  value?:any
+  defaultValue?:any
+};
 
 export function FloatCascader({
   placeholder,

@@ -7,7 +7,7 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "build": "rollup -c --bundleConfigAsCjs"
+    "build": "rollup -c --bundleConfigAsCjs --sourcemap"
   },
   "files": [
     "/dist",
@@ -26,8 +26,8 @@
     "typescript": "^5.4.3"
   },
   "dependencies": {
-    "antd": "^5.15.3",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "antd": "^5.20.3",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   }
 }

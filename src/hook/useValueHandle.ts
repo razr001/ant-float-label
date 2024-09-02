@@ -42,9 +42,6 @@ export function useValueHandle({
       setInputValue(value);
     }
     initFlag.current = true;
-    return () => {
-      initFlag.current = false;
-    };
   }, [value]);
 
   useEffect(() => {
