@@ -1,13 +1,13 @@
 {
   "name": "ant-float-label",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Antd 5 form style similar to MUI",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "build": "rollup -c --bundleConfigAsCjs"
+    "build": "rollup -c --bundleConfigAsCjs --sourcemap"
   },
   "files": [
     "/dist",
@@ -26,8 +26,8 @@
     "typescript": "^5.4.3"
   },
   "dependencies": {
-    "antd": "^5.15.3",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "antd": "^5.20.3",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   }
 }
