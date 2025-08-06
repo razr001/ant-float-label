@@ -20,7 +20,7 @@ export function useValueHandle({
   const { form, name: formName } = useContext(FormContext);
   const [inputValue, setInputValue] = useState(defaultValue ?? value);
   const changeValue = Form.useWatch(
-    formName ? id?.replace(formName + "_", "") : id,
+    formName ? id?.replace(formName + "_", "") : id?.split("_"),
     form
   );
   const handleFocus = useCallback((...args:any) => {
