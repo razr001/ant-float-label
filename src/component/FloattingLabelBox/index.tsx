@@ -1,30 +1,37 @@
-import { FormInstance, theme } from "antd";
+import { theme } from "antd";
 import "./index.css";
 import { InputStatus } from "antd/es/_util/statusUtils";
 import { useMemo } from "react";
+import { Variant } from "antd/es/config-provider";
 
 const { useToken } = theme;
 
 export interface FloattingLabelBoxProps {
   focused?: boolean;
-  haveValue?: boolean;
+  hasValue?: boolean;
   label?: React.ReactNode;
   children?: React.ReactNode;
   width?: string | number;
   height?: string | number;
   status?: InputStatus;
   required?: boolean;
+  fieldsetStyle?: React.CSSProperties;
+  labelStyle?: React.CSSProperties;
+  variant?: Variant;
 }
 
 export function FloattingLabelBox({
   focused,
-  haveValue,
+  hasValue,
   label,
   children,
   width,
   height,
   status,
   required,
+  fieldsetStyle,
+  labelStyle,
+  variant = "outlined",
 }: FloattingLabelBoxProps) {
   const { token } = useToken();
 
@@ -49,6 +56,30 @@ export function FloattingLabelBox({
     return colors;
   }, [status, token]);
 
+  const borderStyleMemo = useMemo(() => {
+    const borderColor = focused ? statusColor.borderColorActive : statusColor.borderColor;
+    if (variant === "outlined") {
+      return {
+        border: '1px solid',
+        borderColor,
+      };
+    } else if (variant === "underlined") {
+      return {
+        borderBottom: '1px solid',
+        borderBottomColor: borderColor,
+        borderTop: 'none',
+        borderLeft: 'none',
+        borderRight: 'none',
+        borderRadius: 0,
+      };
+    }
+    return {
+      border: 'none',
+      borderSize: 0,
+      borderColor: 'transparent',
+    };
+  }, [variant, focused, statusColor]);
+
   return (
     <div
       className="ant-float-label-box"
@@ -71,17 +102,18 @@ export function FloattingLabelBox({
         className="ant-float-label-box-label"
         style={{
           color: focused ? statusColor.textColorActive : statusColor.textColor,
-          height: focused || haveValue ? "auto" : "100%",
+          height: focused || hasValue ? "auto" : "100%",
           transform:
-            focused || haveValue
+            focused || hasValue
               ? "translate(14px, -9px) scale(0.75)"
               : `translate(1em, 0px) scale(1)`,
+          ...labelStyle,
         }}
       >
         {required ? (
-          <div style={{ display: "flex", gap: "0.3em", alignItems:"center" }}>
+          <div style={{ display: "flex", gap: "0.3em", alignItems: "center" }}>
             <span>{label}</span>
-            <span style={{marginTop:"3px"}}>*</span>
+            <span style={{ marginTop: "3px" }}>*</span>
           </div>
         ) : (
           label
@@ -89,17 +121,16 @@ export function FloattingLabelBox({
       </label>
       <fieldset
         style={{
-          border: focused
-            ? `2px solid ${statusColor.borderColorActive}`
-            : `1px solid ${statusColor.borderColor}`,
           borderRadius: token.borderRadius,
+          ...borderStyleMemo,
+          ...fieldsetStyle
         }}
         className="ant-float-label-box-fieldset"
       >
         <legend
           className="ant-float-label-box-legend"
           style={{
-            maxWidth: focused || haveValue ? "100%" : "0.01px",
+            maxWidth: focused || hasValue ? "100%" : "0.01px",
           }}
         >
           {label}

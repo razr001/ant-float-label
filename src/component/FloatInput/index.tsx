@@ -1,16 +1,13 @@
-import { Form, FormInstance, Input, InputProps } from "antd";
+import { Input, InputProps } from "antd";
 import {
-  InputHTMLAttributes,
   useCallback,
-  useEffect,
-  useRef,
-  useState,
 } from "react";
-import { FloattingLabelBox } from "../FloattingLabelBox";
+import { FloattingLabelBox, FloattingLabelBoxProps } from "../FloattingLabelBox";
 import { useValueHandle } from "../../hook/useValueHandle";
 
 export interface FloatInputProps extends InputProps {
   required?:boolean
+  labelBoxProps?: FloattingLabelBoxProps;
 }
 
 export function FloatInput({
@@ -23,6 +20,8 @@ export function FloatInput({
   style,
   size,
   required,
+  labelBoxProps,
+  variant,
   ...restProps
 }: FloatInputProps) {
   const { hasValue, handleChange, handleBlur, handleFocus, isFocus } = useValueHandle({
@@ -47,18 +46,20 @@ export function FloatInput({
     <FloattingLabelBox
       label={placeholder}
       focused={isFocus}
-      haveValue={hasValue}
+      hasValue={hasValue}
       width={style?.width}
       height={style?.height}
       required={required}
       status={
         restProps.status || (restProps["aria-invalid"] ? "error" : undefined)
       }
+      variant={variant}
+      {...labelBoxProps}
     >
       <Input
         style={{ ...style, width: "100%", border: "none" }}
-        variant="borderless"
         {...restProps}
+        variant="borderless"
         onFocus={handleFocus}
         onBlur={handleBlur}
         value={value}

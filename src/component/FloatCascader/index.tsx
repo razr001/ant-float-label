@@ -1,6 +1,6 @@
 import { Cascader, CascaderProps } from "antd";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { FloattingLabelBox } from "../FloattingLabelBox";
+import { FloattingLabelBox, FloattingLabelBoxProps } from "../FloattingLabelBox";
 import { useValueHandle } from "../../hook/useValueHandle";
 
 export interface FloatCascadertProps  extends CascaderProps{
@@ -8,6 +8,7 @@ export interface FloatCascadertProps  extends CascaderProps{
   required?:boolean;
   value?:any
   defaultValue?:any
+  labelBoxProps?: FloattingLabelBoxProps;
 };
 
 export function FloatCascader({
@@ -19,6 +20,8 @@ export function FloatCascader({
   style,
 	required,
   onChange,
+  labelBoxProps,
+  variant,
   ...restProps
 }: FloatCascadertProps) {
   const { hasValue, handleChange, handleBlur, handleFocus, isFocus } =
@@ -44,13 +47,15 @@ export function FloatCascader({
     <FloattingLabelBox
       label={placeholder}
       focused={isFocus}
-      haveValue={hasValue}
+      hasValue={hasValue}
       width={style?.width}
       height={style?.height}
 			required={required}
       status={
         restProps.status || (restProps["aria-invalid"] ? "error" : undefined)
       }
+      variant={variant}
+      {...labelBoxProps}
     >
       <Cascader
         style={{ ...style, width: "100%", border: "none" }}

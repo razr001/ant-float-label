@@ -1,11 +1,12 @@
 import { InputNumber, InputNumberProps } from "antd";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback } from "react";
 import "./index.css";
-import { FloattingLabelBox } from "../FloattingLabelBox";
+import { FloattingLabelBox, FloattingLabelBoxProps } from "../FloattingLabelBox";
 import { useValueHandle } from "../../hook/useValueHandle";
 
 export interface FloatInputNumberProps extends InputNumberProps {
-  required?:boolean
+  required?: boolean
+  labelBoxProps?: FloattingLabelBoxProps;
 }
 
 export function FloatInputNumber({
@@ -17,6 +18,8 @@ export function FloatInputNumber({
   style,
   onChange,
   required,
+  labelBoxProps,
+  variant,
   ...restProps
 }: FloatInputNumberProps) {
   const { hasValue, handleChange, handleBlur, handleFocus, isFocus } =
@@ -44,18 +47,20 @@ export function FloatInputNumber({
     <FloattingLabelBox
       label={placeholder}
       focused={isFocus}
-      haveValue={hasValue}
+      hasValue={hasValue}
       width={style?.width}
       height={style?.height}
       required={required}
       status={
         restProps.status || (restProps["aria-invalid"] ? "error" : undefined)
       }
+      {...labelBoxProps}
+      variant={variant}
     >
       <InputNumber
         style={{ ...style, width: "100%", border: "none" }}
-        variant="borderless"
         {...restProps}
+        variant="borderless"
         onFocus={handleFocus}
         onBlur={handleBlur}
         value={value}

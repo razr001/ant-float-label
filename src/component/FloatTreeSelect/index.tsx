@@ -1,10 +1,11 @@
 import { TreeSelect, TreeSelectProps } from "antd";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { FloattingLabelBox } from "../FloattingLabelBox";
+import { FloattingLabelBox, FloattingLabelBoxProps } from "../FloattingLabelBox";
 import { useValueHandle } from "../../hook/useValueHandle";
 
 export interface FloatTreeSelectProps extends TreeSelectProps {
-  required?:boolean
+  required?:boolean;
+  labelBoxProps: FloattingLabelBoxProps;
 }
 
 export function FloatTreeSelect({
@@ -17,6 +18,8 @@ export function FloatTreeSelect({
   size,
   onChange,
   required,
+  variant,
+  labelBoxProps,
   ...restProps
 }: FloatTreeSelectProps) {
   const { hasValue, handleChange, handleBlur, handleFocus, isFocus } =
@@ -42,13 +45,15 @@ export function FloatTreeSelect({
     <FloattingLabelBox
       label={placeholder}
       focused={isFocus}
-      haveValue={hasValue}
+      hasValue={hasValue}
       width={style?.width}
       height={style?.height}
       required={required}
       status={
         restProps.status || (restProps["aria-invalid"] ? "error" : undefined)
       }
+      variant={variant}
+      {...labelBoxProps}
     >
       <TreeSelect
         style={{
@@ -56,8 +61,8 @@ export function FloatTreeSelect({
           width: "100%",
           border: "none",
         }}
-        variant="borderless"
         {...restProps}
+        variant="borderless"
         onFocus={handleFocus}
         onBlur={handleBlur}
         value={value}

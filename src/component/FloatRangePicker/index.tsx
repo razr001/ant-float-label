@@ -1,14 +1,15 @@
 import { DatePicker } from "antd";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useMemo } from "react";
 import "./index.css";
 import { RangePickerProps } from "antd/es/date-picker";
-import { FloattingLabelBox } from "../FloattingLabelBox";
+import { FloattingLabelBox, FloattingLabelBoxProps } from "../FloattingLabelBox";
 import { useValueHandle } from "../../hook/useValueHandle";
 
 const { RangePicker } = DatePicker;
 
 export interface FloatRangePickerProps extends RangePickerProps {
-  required?:boolean
+  required?: boolean
+  labelBoxProps?: FloattingLabelBoxProps;
 }
 
 export function FloatRangePicker({
@@ -20,6 +21,8 @@ export function FloatRangePicker({
   style,
   onChange,
   required,
+  labelBoxProps,
+  variant,
   ...restProps
 }: FloatRangePickerProps) {
   const { hasValue, handleChange, handleBlur, handleFocus, isFocus } =
@@ -43,26 +46,28 @@ export function FloatRangePicker({
     [onChange]
   );
 
-  const haveValue = useMemo(() => {
+  const hasValueFlag = useMemo(() => {
     return isFocus || hasValue;
   }, [hasValue, isFocus]);
 
   return (
     <FloattingLabelBox
-      label={haveValue && placeholder ? placeholder.join(" - ") : ""}
+      label={hasValueFlag && placeholder ? placeholder.join(" - ") : ""}
       focused={isFocus}
-      haveValue={haveValue}
+      hasValue={hasValueFlag}
       width={style?.width}
       height={style?.height}
       required={required}
       status={
         restProps.status || (restProps["aria-invalid"] ? "error" : undefined)
       }
+      variant={variant}
+      {...labelBoxProps}
     >
       <RangePicker
         style={{ ...style, width: "100%", border: "none" }}
-        variant="borderless"
         {...restProps}
+        variant="borderless"
         onFocus={handleFocus}
         onBlur={handleBlur}
         value={value}

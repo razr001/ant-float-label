@@ -1,6 +1,6 @@
 {
   "name": "ant-float-label",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "Antd 5 form style similar to MUI",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -26,7 +26,7 @@
     "typescript": "^5.4.3"
   },
   "dependencies": {
-    "antd": "^5.20.3",
+    "antd": "^5.27.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   }

@@ -44,13 +44,14 @@ function App() {
       }}
     >
       <h1>Antd 5 form style similar to MUI</h1>
-
       <Space>
         <FloatInput placeholder="Input Middle" />
         <FloatInput placeholder="Input Small" size="small" />
         <FloatInput placeholder="Input Warning" status="warning" />
         <FloatInput placeholder="Input error" status="error" />
         <FloatPassword placeholder="Password" />
+        <FloatInput placeholder="Borderless Input" variant="borderless" />
+        <FloatInput placeholder="Underlined Input" variant="underlined" />
       </Space>
       <br />
       <br />
@@ -74,6 +75,16 @@ function App() {
           allowClear
           mode="multiple"
         />
+        <FloatSelect
+          options={[
+            { value: "1", label: "option 1" },
+            { value: "2", label: "option 2" },
+          ]}
+          placeholder="Borderless Select"
+          style={{ width: "200px" }}
+          allowClear
+          variant="borderless"
+        />
       </Space>
       <br />
       <br />
@@ -81,6 +92,11 @@ function App() {
         <FloatInputNumber
           placeholder="Input Number"
           style={{ width: "100%" }}
+        />
+        <FloatInputNumber
+          placeholder="Input Number"
+          style={{ width: "100%" }}
+          variant="underlined"
         />
         <FloatAutoComplete
           placeholder="Auto Complete"
@@ -91,11 +107,22 @@ function App() {
           ]}
           style={{ width: "200px" }}
         />
+        <FloatAutoComplete
+          placeholder="Auto Complete"
+          options={[
+            { value: "11111111111" },
+            { value: "2222222222" },
+            { value: "3333333333" },
+          ]}
+          style={{ width: "200px" }}
+          variant="underlined"
+        />
       </Space>
       <br />
       <br />
       <Space>
         <FloatDatePicker placeholder="Date Picker" style={{ width: "100%" }} />
+        <FloatDatePicker placeholder="Date Picker" style={{ width: "100%" }} variant="underlined" />
         <FloatRangePicker placeholder={["Start Date", "End Date"]} />
         <FloatTimePicker placeholder="Time Picker" />
       </Space>
@@ -106,6 +133,12 @@ function App() {
           options={options}
           style={{ width: "200px" }}
           placeholder="Cascader"
+        />
+        <FloatCascader
+          options={options}
+          style={{ width: "200px" }}
+          placeholder="Cascader"
+          variant="underlined" 
         />
         <FloatTreeSelect
           treeData={treeData}

@@ -1,10 +1,12 @@
 import { TimePickerProps, TimePicker } from "antd";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { FloattingLabelBox } from "../FloattingLabelBox";
+import { useCallback } from "react";
+import { FloattingLabelBox, FloattingLabelBoxProps } from "../FloattingLabelBox";
 import { useValueHandle } from "../../hook/useValueHandle";
 
 export interface FloatTimePickerProps extends TimePickerProps {
   required?:boolean
+  labelBoxProps?: FloattingLabelBoxProps;
+
 }
 
 export function FloatTimePicker({
@@ -18,6 +20,8 @@ export function FloatTimePicker({
   mode,
   onChange,
   required,
+  labelBoxProps,
+  variant,
   ...restProps
 }: FloatTimePickerProps) {
   const { hasValue, handleChange, handleBlur, handleFocus, isFocus } =
@@ -45,13 +49,15 @@ export function FloatTimePicker({
     <FloattingLabelBox
       label={placeholder}
       focused={isFocus}
-      haveValue={hasValue}
+      hasValue={hasValue}
       width={style?.width}
       height={style?.height}
       required={required}
       status={
         restProps.status || (restProps["aria-invalid"] ? "error" : undefined)
       }
+      variant={variant}
+      {...labelBoxProps}
     >
       <TimePicker
         style={{
@@ -59,8 +65,8 @@ export function FloatTimePicker({
           width: "100%",
           border: "none",
         }}
-        variant="borderless"
         {...restProps}
+        variant="borderless"
         onFocus={handleFocus}
         onBlur={handleBlur}
         value={value}

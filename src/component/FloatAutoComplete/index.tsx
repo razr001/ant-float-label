@@ -2,13 +2,13 @@ import { AutoComplete, AutoCompleteProps, FormInstance } from "antd";
 import {
   useCallback,
 } from "react";
-import { FloattingLabelBox } from "../FloattingLabelBox";
+import { FloattingLabelBox, FloattingLabelBoxProps } from "../FloattingLabelBox";
 import "./index.css";
 import { useValueHandle } from "../../hook/useValueHandle";
-import { FormContext } from "antd/es/form/context";
 
 export interface FloatAutoCompleteProps extends AutoCompleteProps {
   required?:boolean
+  labelBoxProps?: FloattingLabelBoxProps;
 }
 
 export function FloatAutoComplete({
@@ -20,6 +20,8 @@ export function FloatAutoComplete({
   style,
   onChange,
   required,
+  labelBoxProps,
+  variant,
   ...restProps
 }: FloatAutoCompleteProps) {
   const { hasValue, handleChange, handleBlur, handleFocus, isFocus } = useValueHandle({
@@ -47,12 +49,14 @@ export function FloatAutoComplete({
       label={placeholder}
       required={required}
       focused={isFocus}
-      haveValue={hasValue}
+      hasValue={hasValue}
       width={style?.width}
       height={style?.height}
       status={
         restProps.status || (restProps["aria-invalid"] ? "error" : undefined)
       }
+      variant={variant}
+      {...labelBoxProps}
     >
       <AutoComplete
         style={{
@@ -60,8 +64,8 @@ export function FloatAutoComplete({
           ...style,
           border: "none",
         }}
-        variant="borderless"
         {...restProps}
+        variant="borderless"
         onFocus={handleFocus}
         onBlur={handleBlur}
         value={value}

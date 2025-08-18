@@ -1,12 +1,8 @@
-import { Input, InputProps } from "antd";
+import { Input } from "antd";
 import {
-  InputHTMLAttributes,
   useCallback,
-  useEffect,
-  useRef,
-  useState,
 } from "react";
-import { FloattingLabelBox } from "../FloattingLabelBox";
+import { FloattingLabelBox, FloattingLabelBoxProps } from "../FloattingLabelBox";
 import { PasswordProps } from "antd/es/input";
 import "./index.css";
 import { useValueHandle } from "../../hook/useValueHandle";
@@ -15,6 +11,7 @@ const { Password } = Input;
 
 export interface FloatPasswordProps extends PasswordProps {
   required?:boolean
+  labelBoxProps?: FloattingLabelBoxProps;
 }
 
 export function FloatPassword({
@@ -26,6 +23,8 @@ export function FloatPassword({
   style,
   onChange,
   required,
+  labelBoxProps,
+  variant,
   ...restProps
 }: FloatPasswordProps) {
   const { hasValue, handleChange, handleBlur, handleFocus, isFocus } =
@@ -53,18 +52,20 @@ export function FloatPassword({
     <FloattingLabelBox
       label={placeholder}
       focused={isFocus}
-      haveValue={hasValue}
+      hasValue={hasValue}
       width={style?.width}
       height={style?.height}
       required={required}
       status={
         restProps.status || (restProps["aria-invalid"] ? "error" : undefined)
       }
+      variant={variant}
+      {...labelBoxProps}
     >
       <Password
         style={{ ...style, width: "100%", border: "none" }}
-        variant="borderless"
         {...restProps}
+        variant="borderless"
         onFocus={handleFocus}
         onBlur={handleBlur}
         value={value}
