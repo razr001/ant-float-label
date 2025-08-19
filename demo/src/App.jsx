@@ -13,8 +13,9 @@ import {
   FloatFormItem,
 } from "../../dist";
 import { useState, useEffect, useCallback } from "react";
-import UseForm from "./UseForm";
+import UseFormDemo from "./UseFormDemo";
 import { options, treeData } from "./data";
+import FormListDemo from "./FormListDemo";
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -147,7 +148,8 @@ function App() {
           allowClear
         />
       </Space>
-      <UseForm />
+      <UseFormDemo />
+      <FormListDemo />
     </ConfigProvider>
   );
 }
