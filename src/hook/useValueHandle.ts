@@ -1,6 +1,7 @@
 import { Form } from "antd";
-import { FormContext } from "antd/es/form/context";
-import { useCallback, useContext, useEffect, useRef, useState } from "react";
+import { FormContext, FormItemInputContext } from "antd/es/form/context";
+import { useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
+import { FloatItemListContext } from "../component/FloatItemList/FloatItemListProvider";
 
 export function useValueHandle({
   defaultValue,
@@ -12,27 +13,37 @@ export function useValueHandle({
   defaultValue?: any;
   value?: any;
   id?: string;
-  onFocus?: (...args:any) => void;
-  onBlur?: (...args:any) => void;
+  onFocus?: (...args: any) => void;
+  onBlur?: (...args: any) => void;
 }) {
   const initFlag = useRef(false);
   const [isFocus, setIsFocus] = useState(false);
-  const { form, name: formName } = useContext(FormContext);
+  const { form } = useContext(FormContext);
+  const { name } = useContext(FormItemInputContext);
+  const { name: formListName } = useContext(FloatItemListContext)
   const [inputValue, setInputValue] = useState(defaultValue ?? value);
+
+  const nameMemo = useMemo(() => {
+    if(Array.isArray(name) && formListName){
+      return [formListName, ...name];
+    }
+    return name;
+  }, [name, formListName])
+
   const changeValue = Form.useWatch(
-    formName ? id?.replace(formName + "_", "") : id,
+    nameMemo,
     form
   );
-  const handleFocus = useCallback((...args:any) => {
+  const handleFocus = useCallback((...args: any) => {
     setIsFocus(true);
-    if(typeof onFocus === "function"){
+    if (typeof onFocus === "function") {
       onFocus(...args)
     }
   }, [onFocus]);
 
-  const handleBlur = useCallback((...args:any) => {
+  const handleBlur = useCallback((...args: any) => {
     setIsFocus(false);
-    if(typeof onBlur === "function"){
+    if (typeof onBlur === "function") {
       onBlur(args);
     }
   }, [onBlur]);
