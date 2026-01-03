@@ -33,11 +33,14 @@
     "vitest": "^1.4.0",
     "jsdom": "^24.0.0",
     "@testing-library/react": "^16.0.0",
-    "@testing-library/jest-dom": "^6.4.2"
-  },
-  "dependencies": {
+    "@testing-library/jest-dom": "^6.4.2",
     "antd": "^6.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
+  },
+  "peerDependencies": {
+    "antd": ">=6.0.0",
+    "react": ">=19.0.0",
+    "react-dom": ">=19.0.0"
   }
 }

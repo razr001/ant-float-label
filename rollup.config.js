@@ -7,10 +7,11 @@ const banner = 'import "./index.css"'
 
 export default [{
   input: "./src/index.ts",
-  plugins:[
+  external: ["react", "react-dom", "antd", "react/jsx-runtime"],
+  plugins: [
     del({ targets: "dist/*" }),
     typescript(),
-    css({minify:true, output: "index.css"}),
+    css({ minify: true, output: "index.css" }),
     copy({
       targets: [
         { src: "./package.json", dest: "dist/" },

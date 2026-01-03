@@ -2,7 +2,7 @@ import { Form, FormItemProps } from "antd";
 import React, { useMemo } from "react";
 
 export interface FloatFormItemProps extends FormItemProps {
-  children?: JSX.Element;
+  children?: React.ReactElement<any>;
 }
 
 export function FloatFormItem({
@@ -23,9 +23,9 @@ export function FloatFormItem({
     <Form.Item required={required} rules={rules} {...restProps}>
       {children
         ? React.cloneElement(children, {
-            placeholder: label,
-            required: isRequired,
-          })
+          placeholder: label,
+          required: isRequired,
+        })
         : children}
     </Form.Item>
   );

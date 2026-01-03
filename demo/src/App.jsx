@@ -52,7 +52,7 @@ function App() {
         <FloatInput placeholder="Input error" status="error" />
         <FloatPassword placeholder="Password" />
         <FloatInput placeholder="Borderless Input" variant="borderless" />
-        <FloatInput placeholder="Underlined Input" variant="underlined" />
+        <FloatInput placeholder="Underlined Input" variant="underlined" defaultValue="Underlined Input" />
       </Space>
       <br />
       <br />

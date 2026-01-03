@@ -1,7 +1,7 @@
 import { Form, Space, Button } from "antd";
-import { FloatFormItem, FloatSelect, FloatItemList, FloatInputNumber } from "../../dist";
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 import { useEffect } from "react";
+import { FloatFormItem, FloatSelect, FloatItemList, FloatInputNumber } from "ant-float-label";
 
 let data = {
 	name: 'Person 1',
@@ -33,7 +33,7 @@ export default function FormListDemo() {
 				<Form.Item label="Goals">
 					<FloatItemList name="goals">
 						{(fields, { add, remove }) => (
-							<Space direction="vertical" size="large">
+							<Space orientation="vertical" size="large">
 								{fields.map(({ key, name }) => (
 									<Space key={key} align="baseline" wrap>
 										<FloatFormItem name={[name, 'grain']} label="Grain">
