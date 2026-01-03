@@ -1,7 +1,7 @@
+import type { ComponentProps } from "react";
 import { Form } from "antd";
-import { FormListProps } from "antd/es/form";
 import { FloatItemListProvider } from "./FloatItemListProvider";
 
-export function FloatItemList({ children, name, ...reset }: FormListProps) {
+export function FloatItemList({ children, name, ...reset }: ComponentProps<typeof Form.List>) {
     return <FloatItemListProvider name={name}><Form.List name={name} {...reset}>{children}</Form.List></FloatItemListProvider>
 }

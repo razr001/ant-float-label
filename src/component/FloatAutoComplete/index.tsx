@@ -2,13 +2,13 @@ import { AutoComplete, AutoCompleteProps, FormInstance } from "antd";
 import {
   useCallback,
 } from "react";
-import { FloattingLabelBox, FloattingLabelBoxProps } from "../FloattingLabelBox";
+import { FloatingLabelBox, FloatingLabelBoxProps } from "../FloatingLabelBox";
 import "./index.css";
 import { useValueHandle } from "../../hook/useValueHandle";
 
 export interface FloatAutoCompleteProps extends AutoCompleteProps {
-  required?:boolean
-  labelBoxProps?: FloattingLabelBoxProps;
+  required?: boolean
+  labelBoxProps?: FloatingLabelBoxProps;
 }
 
 export function FloatAutoComplete({
@@ -45,7 +45,7 @@ export function FloatAutoComplete({
   );
 
   return (
-    <FloattingLabelBox
+    <FloatingLabelBox
       label={placeholder}
       required={required}
       focused={isFocus}
@@ -73,6 +73,6 @@ export function FloatAutoComplete({
         onChange={changeHandler}
         rootClassName="ant-float-label-form-auto-complete"
       />
-    </FloattingLabelBox>
+    </FloatingLabelBox>
   );
 }

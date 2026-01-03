@@ -1,26 +1,25 @@
 import { theme } from "antd";
+import type { InputProps } from "antd";
 import "./index.css";
-import { InputStatus } from "antd/es/_util/statusUtils";
 import { useMemo } from "react";
-import { Variant } from "antd/es/config-provider";
 
 const { useToken } = theme;
 
-export interface FloattingLabelBoxProps {
+export interface FloatingLabelBoxProps {
   focused?: boolean;
   hasValue?: boolean;
   label?: React.ReactNode;
   children?: React.ReactNode;
   width?: string | number;
   height?: string | number;
-  status?: InputStatus;
+  status?: InputProps['status'];
   required?: boolean;
   fieldsetStyle?: React.CSSProperties;
   labelStyle?: React.CSSProperties;
-  variant?: Variant;
+  variant?: InputProps['variant'];
 }
 
-export function FloattingLabelBox({
+export function FloatingLabelBox({
   focused,
   hasValue,
   label,
@@ -32,7 +31,7 @@ export function FloattingLabelBox({
   fieldsetStyle,
   labelStyle,
   variant = "outlined",
-}: FloattingLabelBoxProps) {
+}: FloatingLabelBoxProps) {
   const { token } = useToken();
 
   const statusColor = useMemo(() => {

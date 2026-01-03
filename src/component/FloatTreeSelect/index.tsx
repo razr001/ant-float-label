@@ -1,11 +1,11 @@
 import { TreeSelect, TreeSelectProps } from "antd";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { FloattingLabelBox, FloattingLabelBoxProps } from "../FloattingLabelBox";
+import { FloatingLabelBox, FloatingLabelBoxProps } from "../FloatingLabelBox";
 import { useValueHandle } from "../../hook/useValueHandle";
 
 export interface FloatTreeSelectProps extends TreeSelectProps {
-  required?:boolean;
-  labelBoxProps: FloattingLabelBoxProps;
+  required?: boolean;
+  labelBoxProps?: FloatingLabelBoxProps;
 }
 
 export function FloatTreeSelect({
@@ -42,7 +42,7 @@ export function FloatTreeSelect({
   );
 
   return (
-    <FloattingLabelBox
+    <FloatingLabelBox
       label={placeholder}
       focused={isFocus}
       hasValue={hasValue}
@@ -71,6 +71,6 @@ export function FloatTreeSelect({
         onChange={changeHandler}
         rootClassName="ant-float-label-form-select"
       />
-    </FloattingLabelBox>
+    </FloatingLabelBox>
   );
 }

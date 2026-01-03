@@ -2,12 +2,12 @@ import { Input, InputProps } from "antd";
 import {
   useCallback,
 } from "react";
-import { FloattingLabelBox, FloattingLabelBoxProps } from "../FloattingLabelBox";
+import { FloatingLabelBox, FloatingLabelBoxProps } from "../FloatingLabelBox";
 import { useValueHandle } from "../../hook/useValueHandle";
 
 export interface FloatInputProps extends InputProps {
-  required?:boolean
-  labelBoxProps?: FloattingLabelBoxProps;
+  required?: boolean
+  labelBoxProps?: FloatingLabelBoxProps;
 }
 
 export function FloatInput({
@@ -43,7 +43,7 @@ export function FloatInput({
   );
 
   return (
-    <FloattingLabelBox
+    <FloatingLabelBox
       label={placeholder}
       focused={isFocus}
       hasValue={hasValue}
@@ -67,6 +67,6 @@ export function FloatInput({
         onChange={changeHandler}
         size={size}
       />
-    </FloattingLabelBox>
+    </FloatingLabelBox>
   );
 }

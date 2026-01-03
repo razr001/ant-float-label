@@ -1,11 +1,11 @@
 import { TimePickerProps, TimePicker } from "antd";
 import { useCallback } from "react";
-import { FloattingLabelBox, FloattingLabelBoxProps } from "../FloattingLabelBox";
+import { FloatingLabelBox, FloatingLabelBoxProps } from "../FloatingLabelBox";
 import { useValueHandle } from "../../hook/useValueHandle";
 
 export interface FloatTimePickerProps extends TimePickerProps {
-  required?:boolean
-  labelBoxProps?: FloattingLabelBoxProps;
+  required?: boolean
+  labelBoxProps?: FloatingLabelBoxProps;
 
 }
 
@@ -46,7 +46,7 @@ export function FloatTimePicker({
   );
 
   return (
-    <FloattingLabelBox
+    <FloatingLabelBox
       label={placeholder}
       focused={isFocus}
       hasValue={hasValue}
@@ -77,6 +77,6 @@ export function FloatTimePicker({
         rootClassName="ant-float-label-form-select"
         placeholder=""
       />
-    </FloattingLabelBox>
+    </FloatingLabelBox>
   );
 }

@@ -1,12 +1,12 @@
 import { Select, SelectProps } from "antd";
 import { useCallback } from "react";
 import "./index.css";
-import { FloattingLabelBox, FloattingLabelBoxProps } from "../FloattingLabelBox";
+import { FloatingLabelBox, FloatingLabelBoxProps } from "../FloatingLabelBox";
 import { useValueHandle } from "../../hook/useValueHandle";
 
 export interface FloatSelectProps extends SelectProps {
   required?: boolean
-  labelBoxProps?: FloattingLabelBoxProps;
+  labelBoxProps?: FloatingLabelBoxProps;
 }
 
 export function FloatSelect({
@@ -46,7 +46,7 @@ export function FloatSelect({
   );
 
   return (
-    <FloattingLabelBox
+    <FloatingLabelBox
       label={placeholder}
       focused={isFocus}
       hasValue={hasValue}
@@ -72,6 +72,6 @@ export function FloatSelect({
         mode={mode}
         rootClassName="ant-float-label-form-select"
       />
-    </FloattingLabelBox>
+    </FloatingLabelBox>
   );
 }

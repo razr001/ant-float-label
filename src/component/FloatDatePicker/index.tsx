@@ -1,12 +1,12 @@
 import { DatePicker, DatePickerProps } from "antd";
 import { useCallback, useEffect, useRef, useState } from "react";
 import "./index.css";
-import { FloattingLabelBox, FloattingLabelBoxProps } from "../FloattingLabelBox";
+import { FloatingLabelBox, FloatingLabelBoxProps } from "../FloatingLabelBox";
 import { useValueHandle } from "../../hook/useValueHandle";
 
 export interface FloatDatePickerProps extends DatePickerProps {
-	required?:boolean
-	labelBoxProps?: FloattingLabelBoxProps;
+	required?: boolean
+	labelBoxProps?: FloatingLabelBoxProps;
 }
 
 export function FloatDatePicker({
@@ -23,12 +23,12 @@ export function FloatDatePicker({
 	...restProps
 }: FloatDatePickerProps) {
 	const { hasValue, handleChange, handleBlur, handleFocus, isFocus } = useValueHandle({
-    id: restProps.id,
-    defaultValue,
-    value,
-    onFocus,
-    onBlur,
-  });
+		id: restProps.id,
+		defaultValue,
+		value,
+		onFocus,
+		onBlur,
+	});
 
 	const changeHandler = useCallback<
 		Exclude<DatePickerProps["onChange"], undefined>
@@ -43,7 +43,7 @@ export function FloatDatePicker({
 	);
 
 	return (
-		<FloattingLabelBox
+		<FloatingLabelBox
 			label={placeholder}
 			focused={isFocus}
 			hasValue={hasValue}
@@ -55,7 +55,7 @@ export function FloatDatePicker({
 			{...labelBoxProps}
 		>
 			<DatePicker
-				style={{...style, width:"100%", border: "none" }}
+				style={{ ...style, width: "100%", border: "none" }}
 				{...restProps}
 				variant="borderless"
 				onFocus={handleFocus}
@@ -66,6 +66,6 @@ export function FloatDatePicker({
 				rootClassName="ant-float-label-form-picker"
 				placeholder=""
 			/>
-		</FloattingLabelBox>
+		</FloatingLabelBox>
 	);
 }

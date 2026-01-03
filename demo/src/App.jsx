@@ -11,7 +11,7 @@ import {
   FloatTimePicker,
   FloatPassword,
   FloatFormItem,
-} from "../../dist";
+} from "ant-float-label";
 import { useState, useEffect, useCallback } from "react";
 import UseFormDemo from "./UseFormDemo";
 import { options, treeData } from "./data";
@@ -52,7 +52,7 @@ function App() {
         <FloatInput placeholder="Input error" status="error" />
         <FloatPassword placeholder="Password" />
         <FloatInput placeholder="Borderless Input" variant="borderless" />
-        <FloatInput placeholder="Underlined Input" variant="underlined" />
+        <FloatInput placeholder="Underlined Input" variant="underlined" defaultValue="Underlined Input" />
       </Space>
       <br />
       <br />
@@ -139,7 +139,7 @@ function App() {
           options={options}
           style={{ width: "200px" }}
           placeholder="Cascader"
-          variant="underlined" 
+          variant="underlined"
         />
         <FloatTreeSelect
           treeData={treeData}
