@@ -11,7 +11,7 @@ import {
   FloatTimePicker,
   FloatPassword,
   FloatFormItem,
-} from "../../dist";
+} from "ant-float-label";
 import { useState, useEffect, useCallback } from "react";
 import UseFormDemo from "./UseFormDemo";
 import { options, treeData } from "./data";
@@ -139,7 +139,7 @@ function App() {
           options={options}
           style={{ width: "200px" }}
           placeholder="Cascader"
-          variant="underlined" 
+          variant="underlined"
         />
         <FloatTreeSelect
           treeData={treeData}

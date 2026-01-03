@@ -2,7 +2,7 @@ import { Input } from "antd";
 import {
   useCallback,
 } from "react";
-import { FloattingLabelBox, FloattingLabelBoxProps } from "../FloattingLabelBox";
+import { FloatingLabelBox, FloatingLabelBoxProps } from "../FloatingLabelBox";
 import { PasswordProps } from "antd/es/input";
 import "./index.css";
 import { useValueHandle } from "../../hook/useValueHandle";
@@ -10,8 +10,8 @@ import { useValueHandle } from "../../hook/useValueHandle";
 const { Password } = Input;
 
 export interface FloatPasswordProps extends PasswordProps {
-  required?:boolean
-  labelBoxProps?: FloattingLabelBoxProps;
+  required?: boolean
+  labelBoxProps?: FloatingLabelBoxProps;
 }
 
 export function FloatPassword({
@@ -49,7 +49,7 @@ export function FloatPassword({
   );
 
   return (
-    <FloattingLabelBox
+    <FloatingLabelBox
       label={placeholder}
       focused={isFocus}
       hasValue={hasValue}
@@ -70,9 +70,9 @@ export function FloatPassword({
         onBlur={handleBlur}
         value={value}
         defaultValue={defaultValue}
-				onChange={changeHanlder}
+        onChange={changeHanlder}
         rootClassName="ant-float-label-form-input-password"
       />
-    </FloattingLabelBox>
+    </FloatingLabelBox>
   );
 }

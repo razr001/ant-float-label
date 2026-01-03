@@ -2,14 +2,14 @@ import { DatePicker } from "antd";
 import { useCallback, useMemo } from "react";
 import "./index.css";
 import { RangePickerProps } from "antd/es/date-picker";
-import { FloattingLabelBox, FloattingLabelBoxProps } from "../FloattingLabelBox";
+import { FloatingLabelBox, FloatingLabelBoxProps } from "../FloatingLabelBox";
 import { useValueHandle } from "../../hook/useValueHandle";
 
 const { RangePicker } = DatePicker;
 
 export interface FloatRangePickerProps extends RangePickerProps {
   required?: boolean
-  labelBoxProps?: FloattingLabelBoxProps;
+  labelBoxProps?: FloatingLabelBoxProps;
 }
 
 export function FloatRangePicker({
@@ -51,7 +51,7 @@ export function FloatRangePicker({
   }, [hasValue, isFocus]);
 
   return (
-    <FloattingLabelBox
+    <FloatingLabelBox
       label={hasValueFlag && placeholder ? placeholder.join(" - ") : ""}
       focused={isFocus}
       hasValue={hasValueFlag}
@@ -76,6 +76,6 @@ export function FloatRangePicker({
         rootClassName="ant-float-label-form-picker"
         placeholder={hasValue ? ["", ""] : placeholder}
       />
-    </FloattingLabelBox>
+    </FloatingLabelBox>
   );
 }

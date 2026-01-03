@@ -1,12 +1,12 @@
 import { InputNumber, InputNumberProps } from "antd";
 import { useCallback } from "react";
 import "./index.css";
-import { FloattingLabelBox, FloattingLabelBoxProps } from "../FloattingLabelBox";
+import { FloatingLabelBox, FloatingLabelBoxProps } from "../FloatingLabelBox";
 import { useValueHandle } from "../../hook/useValueHandle";
 
 export interface FloatInputNumberProps extends InputNumberProps {
   required?: boolean
-  labelBoxProps?: FloattingLabelBoxProps;
+  labelBoxProps?: FloatingLabelBoxProps;
 }
 
 export function FloatInputNumber({
@@ -44,7 +44,7 @@ export function FloatInputNumber({
   );
 
   return (
-    <FloattingLabelBox
+    <FloatingLabelBox
       label={placeholder}
       focused={isFocus}
       hasValue={hasValue}
@@ -68,6 +68,6 @@ export function FloatInputNumber({
         onChange={changeHanlder}
         rootClassName="ant-float-label-form-input-number"
       />
-    </FloattingLabelBox>
+    </FloatingLabelBox>
   );
 }
