@@ -1,8 +1,9 @@
 import { DatePicker, DatePickerProps } from "antd";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback } from "react";
 import "./index.css";
 import { FloatingLabelBox, FloatingLabelBoxProps } from "../FloatingLabelBox";
 import { useValueHandle } from "../../hook/useValueHandle";
+import type { InputProps } from "antd";
 
 export interface FloatDatePickerProps extends DatePickerProps {
 	required?: boolean
@@ -20,14 +21,16 @@ export function FloatDatePicker({
 	onChange,
 	labelBoxProps,
 	variant,
+	status,
 	...restProps
 }: FloatDatePickerProps) {
-	const { hasValue, handleChange, handleBlur, handleFocus, isFocus } = useValueHandle({
+	const { hasValue, handleChange, handleBlur, handleFocus, isFocus, formItemStatus } = useValueHandle({
 		id: restProps.id,
 		defaultValue,
 		value,
 		onFocus,
 		onBlur,
+		status,
 	});
 
 	const changeHandler = useCallback<
@@ -49,7 +52,7 @@ export function FloatDatePicker({
 			hasValue={hasValue}
 			width={style?.width}
 			height={style?.height}
-			status={restProps.status || (restProps["aria-invalid"] ? "error" : undefined)}
+			status={formItemStatus as InputProps['status']}
 			required={required}
 			variant={variant}
 			{...labelBoxProps}

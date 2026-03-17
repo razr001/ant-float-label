@@ -20,12 +20,14 @@ export function FloatFormItem({
   }, [required, rules]);
 
   return (
-    <Form.Item required={required} rules={rules} {...restProps}>
+    // noStyle + label hidden: Form.Item handles validation state via context (Form.Item.useStatus)
+    // The float components read status from Form.Item.useStatus() hook automatically
+    <Form.Item required={required} rules={rules} {...restProps} label="">
       {children
         ? React.cloneElement(children, {
-          placeholder: label,
-          required: isRequired,
-        })
+            placeholder: label,
+            required: isRequired,
+          })
         : children}
     </Form.Item>
   );

@@ -1,10 +1,11 @@
-import { AutoComplete, AutoCompleteProps, FormInstance } from "antd";
+import { AutoComplete, AutoCompleteProps } from "antd";
 import {
   useCallback,
 } from "react";
 import { FloatingLabelBox, FloatingLabelBoxProps } from "../FloatingLabelBox";
 import "./index.css";
 import { useValueHandle } from "../../hook/useValueHandle";
+import type { InputProps } from "antd";
 
 export interface FloatAutoCompleteProps extends AutoCompleteProps {
   required?: boolean
@@ -22,14 +23,16 @@ export function FloatAutoComplete({
   required,
   labelBoxProps,
   variant,
+  status,
   ...restProps
 }: FloatAutoCompleteProps) {
-  const { hasValue, handleChange, handleBlur, handleFocus, isFocus } = useValueHandle({
+  const { hasValue, handleChange, handleBlur, handleFocus, isFocus, formItemStatus } = useValueHandle({
     id: restProps.id,
     defaultValue,
     value,
     onFocus,
     onBlur,
+    status,
   });
 
   const changeHandler = useCallback<
@@ -52,9 +55,7 @@ export function FloatAutoComplete({
       hasValue={hasValue}
       width={style?.width}
       height={style?.height}
-      status={
-        restProps.status || (restProps["aria-invalid"] ? "error" : undefined)
-      }
+      status={formItemStatus as InputProps['status']}
       variant={variant}
       {...labelBoxProps}
     >
