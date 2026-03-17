@@ -3,6 +3,7 @@ import { useCallback } from "react";
 import "./index.css";
 import { FloatingLabelBox, FloatingLabelBoxProps } from "../FloatingLabelBox";
 import { useValueHandle } from "../../hook/useValueHandle";
+import type { InputProps } from "antd";
 
 export interface FloatInputNumberProps extends InputNumberProps {
   required?: boolean
@@ -20,15 +21,17 @@ export function FloatInputNumber({
   required,
   labelBoxProps,
   variant,
+  status,
   ...restProps
 }: FloatInputNumberProps) {
-  const { hasValue, handleChange, handleBlur, handleFocus, isFocus } =
+  const { hasValue, handleChange, handleBlur, handleFocus, isFocus, formItemStatus } =
     useValueHandle({
       id: restProps.id,
       defaultValue,
       value,
       onFocus,
       onBlur,
+      status,
     });
 
   const changeHanlder = useCallback<
@@ -51,11 +54,9 @@ export function FloatInputNumber({
       width={style?.width}
       height={style?.height}
       required={required}
-      status={
-        restProps.status || (restProps["aria-invalid"] ? "error" : undefined)
-      }
-      {...labelBoxProps}
+      status={formItemStatus as InputProps['status']}
       variant={variant}
+      {...labelBoxProps}
     >
       <InputNumber
         style={{ ...style, width: "100%", border: "none" }}

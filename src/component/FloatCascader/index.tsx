@@ -1,7 +1,8 @@
 import { Cascader, CascaderProps } from "antd";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback } from "react";
 import { FloatingLabelBox, FloatingLabelBoxProps } from "../FloatingLabelBox";
 import { useValueHandle } from "../../hook/useValueHandle";
+import type { InputProps } from "antd";
 
 export interface FloatCascadertProps extends CascaderProps {
   multiple?: true;
@@ -22,15 +23,17 @@ export function FloatCascader({
   onChange,
   labelBoxProps,
   variant,
+  status,
   ...restProps
 }: FloatCascadertProps) {
-  const { hasValue, handleChange, handleBlur, handleFocus, isFocus } =
+  const { hasValue, handleChange, handleBlur, handleFocus, isFocus, formItemStatus } =
     useValueHandle({
       id: restProps.id,
       defaultValue,
       value,
       onFocus,
       onBlur,
+      status,
     });
 
   const changehandler = useCallback(
@@ -51,9 +54,7 @@ export function FloatCascader({
       width={style?.width}
       height={style?.height}
       required={required}
-      status={
-        restProps.status || (restProps["aria-invalid"] ? "error" : undefined)
-      }
+      status={formItemStatus as InputProps['status']}
       variant={variant}
       {...labelBoxProps}
     >

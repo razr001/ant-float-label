@@ -1,20 +1,21 @@
-import { render, screen, fireEvent } from '@testing-library/react'
-import { describe, it, expect, vi } from 'vitest'
+import { render, screen } from '@testing-library/react'
+import { describe, it, expect } from 'vitest'
 import { FloatPassword } from '../src/component/FloatPassword'
 import React from 'react'
+import { Form } from 'antd'
+
+const FormWrapper = ({ children }: { children: React.ReactNode }) => (
+    <Form><Form.Item>{children}</Form.Item></Form>
+)
 
 describe('FloatPassword', () => {
     it('should render password input and label', () => {
-        render(<FloatPassword placeholder="Password" />)
+        render(<FloatPassword placeholder="Password" />, { wrapper: FormWrapper })
         expect(screen.getAllByText('Password')[0]).toBeInTheDocument()
-        // Antd Password input renders an input with type="password"
-        // Note: Antd wraps it, so we seek by placeholder or display value usually, 
-        // but here the placeholder is used as label.
-        // Let's find by selector or label association
     })
 
     it('should toggle visibility', () => {
-        const { container } = render(<FloatPassword placeholder="Pass" />)
+        const { container } = render(<FloatPassword placeholder="Pass" />, { wrapper: FormWrapper })
         const icon = container.querySelector('.ant-input-password-icon')
         expect(icon).toBeInTheDocument()
     })

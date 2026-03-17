@@ -3,6 +3,7 @@ import { useCallback } from "react";
 import "./index.css";
 import { FloatingLabelBox, FloatingLabelBoxProps } from "../FloatingLabelBox";
 import { useValueHandle } from "../../hook/useValueHandle";
+import type { InputProps } from "antd";
 
 export interface FloatSelectProps extends SelectProps {
   required?: boolean
@@ -22,15 +23,17 @@ export function FloatSelect({
   required,
   labelBoxProps,
   variant,
+  status,
   ...restProps
 }: FloatSelectProps) {
-  const { hasValue, handleChange, handleBlur, handleFocus, isFocus } =
+  const { hasValue, handleChange, handleBlur, handleFocus, isFocus, formItemStatus } =
     useValueHandle({
       id: restProps.id?.toString(),
       defaultValue,
       value,
       onFocus,
       onBlur,
+      status,
     });
 
   const changeHandler = useCallback<
@@ -53,9 +56,7 @@ export function FloatSelect({
       width={style?.width}
       height={style?.height}
       required={required}
-      status={
-        restProps.status || (restProps["aria-invalid"] ? "error" : undefined)
-      }
+      status={formItemStatus as InputProps['status']}
       variant={variant}
       {...labelBoxProps}
     >
