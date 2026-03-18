@@ -10,7 +10,7 @@ const FormWrapper = ({ children }: { children: React.ReactNode }) => (
 
 describe('FloatInputNumber', () => {
     it('should render input and label', () => {
-        render(<FloatInputNumber placeholder="Age" />, { wrapper: FormWrapper })
+        render(<FloatInputNumber placeholder="Age" label='Age' />, { wrapper: FormWrapper })
         expect(screen.getAllByText('Age')[0]).toBeInTheDocument()
         expect(screen.getByRole('spinbutton')).toBeInTheDocument()
     })

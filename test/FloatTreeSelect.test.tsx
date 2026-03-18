@@ -10,7 +10,7 @@ const FormWrapper = ({ children }: { children: React.ReactNode }) => (
 
 describe('FloatTreeSelect', () => {
     it('should render with label', () => {
-        render(<FloatTreeSelect placeholder="Node" treeData={[]} />, { wrapper: FormWrapper })
+        render(<FloatTreeSelect placeholder="Node" label='Node' treeData={[]} />, { wrapper: FormWrapper })
         expect(screen.getAllByText('Node')[0]).toBeInTheDocument()
         expect(screen.getByRole('combobox')).toBeInTheDocument()
     })

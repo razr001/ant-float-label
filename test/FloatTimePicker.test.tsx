@@ -10,7 +10,7 @@ const FormWrapper = ({ children }: { children: React.ReactNode }) => (
 
 describe('FloatTimePicker', () => {
     it('should render with label', () => {
-        render(<FloatTimePicker placeholder="Time" />, { wrapper: FormWrapper })
+        render(<FloatTimePicker placeholder="Time" label='Time' />, { wrapper: FormWrapper })
         expect(screen.getAllByText('Time')[0]).toBeInTheDocument()
     })
 })

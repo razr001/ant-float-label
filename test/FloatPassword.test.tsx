@@ -10,7 +10,7 @@ const FormWrapper = ({ children }: { children: React.ReactNode }) => (
 
 describe('FloatPassword', () => {
     it('should render password input and label', () => {
-        render(<FloatPassword placeholder="Password" />, { wrapper: FormWrapper })
+        render(<FloatPassword placeholder="Password" label='Password' />, { wrapper: FormWrapper })
         expect(screen.getAllByText('Password')[0]).toBeInTheDocument()
     })
 

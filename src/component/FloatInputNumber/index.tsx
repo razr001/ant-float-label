@@ -1,17 +1,14 @@
 import { InputNumber, InputNumberProps } from "antd";
 import { useCallback } from "react";
 import "./index.css";
-import { FloatingLabelBox, FloatingLabelBoxProps } from "../FloatingLabelBox";
+import { FloatingLabelBox } from "../FloatingLabelBox";
 import { useValueHandle } from "../../hook/useValueHandle";
 import type { InputProps } from "antd";
-
-export interface FloatInputNumberProps extends InputNumberProps {
-  required?: boolean
-  labelBoxProps?: FloatingLabelBoxProps;
-}
+import { FloatComponentProps } from "../../types";
 
 export function FloatInputNumber({
   placeholder,
+  label,
   onFocus,
   onBlur,
   value,
@@ -23,16 +20,22 @@ export function FloatInputNumber({
   variant,
   status,
   ...restProps
-}: FloatInputNumberProps) {
-  const { hasValue, handleChange, handleBlur, handleFocus, isFocus, formItemStatus } =
-    useValueHandle({
-      id: restProps.id,
-      defaultValue,
-      value,
-      onFocus,
-      onBlur,
-      status,
-    });
+}: FloatComponentProps<InputNumberProps>) {
+  const {
+    hasValue,
+    handleChange,
+    handleBlur,
+    handleFocus,
+    isFocus,
+    formItemStatus,
+  } = useValueHandle({
+    id: restProps.id,
+    defaultValue,
+    value,
+    onFocus,
+    onBlur,
+    status,
+  });
 
   const changeHanlder = useCallback<
     Exclude<InputNumberProps["onChange"], undefined>
@@ -43,24 +46,25 @@ export function FloatInputNumber({
         onChange(value);
       }
     },
-    [onChange]
+    [onChange],
   );
 
   return (
     <FloatingLabelBox
-      label={placeholder}
+      label={label}
       focused={isFocus}
       hasValue={hasValue}
       width={style?.width}
       height={style?.height}
       required={required}
-      status={formItemStatus as InputProps['status']}
+      status={formItemStatus as InputProps["status"]}
       variant={variant}
       {...labelBoxProps}
     >
       <InputNumber
         style={{ ...style, width: "100%", border: "none" }}
         {...restProps}
+        placeholder={isFocus || hasValue ? placeholder : ""}
         variant="borderless"
         onFocus={handleFocus}
         onBlur={handleBlur}

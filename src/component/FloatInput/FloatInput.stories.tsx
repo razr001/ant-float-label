@@ -33,13 +33,15 @@ type Story = StoryObj<typeof FloatInput>;
 export const Default: Story = {
   args: {
     placeholder: "请输入内容",
+    label: "内容",
     style: { width: 300 },
   },
 };
 
 export const Required: Story = {
   args: {
-    placeholder: "必填字段",
+    placeholder: "请输入内容",
+    label: "内容",
     required: true,
     style: { width: 300 },
   },
@@ -47,7 +49,8 @@ export const Required: Story = {
 
 export const WithDefaultValue: Story = {
   args: {
-    placeholder: "用户名",
+    placeholder: "请输入内容",
+    label: "内容",
     defaultValue: "admin",
     style: { width: 300 },
   },
@@ -55,7 +58,8 @@ export const WithDefaultValue: Story = {
 
 export const Disabled: Story = {
   args: {
-    placeholder: "禁用状态",
+    placeholder: "请输入内容",
+    label: "内容",
     disabled: true,
     defaultValue: "禁用内容",
     style: { width: 300 },
@@ -64,7 +68,8 @@ export const Disabled: Story = {
 
 export const ErrorStatus: Story = {
   args: {
-    placeholder: "错误状态",
+    placeholder: "请输入内容",
+    label: "内容",
     status: "error",
     style: { width: 300 },
   },
@@ -72,7 +77,8 @@ export const ErrorStatus: Story = {
 
 export const WarningStatus: Story = {
   args: {
-    placeholder: "警告状态",
+    placeholder: "请输入内容",
+    label: "内容",
     status: "warning",
     style: { width: 300 },
   },
@@ -80,7 +86,8 @@ export const WarningStatus: Story = {
 
 export const Underlined: Story = {
   args: {
-    placeholder: "下划线样式",
+    placeholder: "请输入内容",
+    label: "内容",
     variant: "underlined",
     style: { width: 300 },
   },
@@ -88,7 +95,8 @@ export const Underlined: Story = {
 
 export const Filled: Story = {
   args: {
-    placeholder: "填充样式",
+    placeholder: "请输入内容",
+    label: "内容",
     variant: "filled",
     style: { width: 300 },
   },
@@ -96,7 +104,8 @@ export const Filled: Story = {
 
 export const SmallSize: Story = {
   args: {
-    placeholder: "小尺寸",
+    placeholder: "请输入内容",
+    label: "内容",
     size: "small",
     style: { width: 300 },
   },
@@ -104,7 +113,8 @@ export const SmallSize: Story = {
 
 export const LargeSize: Story = {
   args: {
-    placeholder: "大尺寸",
+    placeholder: "请输入内容",
+    label: "内容",
     size: "large",
     style: { width: 300 },
   },

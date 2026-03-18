@@ -33,13 +33,15 @@ type Story = StoryObj<typeof FloatDatePicker>;
 export const Default: Story = {
   args: {
     placeholder: "请选择日期",
+    label: "日期",
     style: { width: 300 },
   },
 };
 
 export const Required: Story = {
   args: {
-    placeholder: "日期（必填）",
+    placeholder: "请选择日期",
+    label: "日期",
     required: true,
     style: { width: 300 },
   },
@@ -47,7 +49,8 @@ export const Required: Story = {
 
 export const Disabled: Story = {
   args: {
-    placeholder: "禁用状态",
+    placeholder: "请选择日期",
+    label: "日期",
     disabled: true,
     style: { width: 300 },
   },
@@ -55,7 +58,8 @@ export const Disabled: Story = {
 
 export const ErrorStatus: Story = {
   args: {
-    placeholder: "错误状态",
+    placeholder: "请选择日期",
+    label: "日期",
     status: "error",
     style: { width: 300 },
   },
@@ -63,7 +67,8 @@ export const ErrorStatus: Story = {
 
 export const WarningStatus: Story = {
   args: {
-    placeholder: "警告状态",
+    placeholder: "请选择日期",
+    label: "日期",
     status: "warning",
     style: { width: 300 },
   },
@@ -71,7 +76,8 @@ export const WarningStatus: Story = {
 
 export const MonthPicker: Story = {
   args: {
-    placeholder: "请选择月份",
+    placeholder: "请选择日期",
+    label: "日期",
     picker: "month",
     style: { width: 300 },
   },
@@ -79,7 +85,8 @@ export const MonthPicker: Story = {
 
 export const YearPicker: Story = {
   args: {
-    placeholder: "请选择年份",
+    placeholder: "请选择日期",
+    label: "日期",
     picker: "year",
     style: { width: 300 },
   },
@@ -87,7 +94,8 @@ export const YearPicker: Story = {
 
 export const Underlined: Story = {
   args: {
-    placeholder: "下划线样式",
+    placeholder: "请选择日期",
+    label: "日期",
     variant: "underlined",
     style: { width: 300 },
   },

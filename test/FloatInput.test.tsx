@@ -10,7 +10,7 @@ const FormWrapper = ({ children }: { children: React.ReactNode }) => (
 
 describe('FloatInput', () => {
     it('should render input and label', () => {
-        render(<FloatInput placeholder="Username" />, { wrapper: FormWrapper })
+        render(<FloatInput placeholder="Username" label="Username" />, { wrapper: FormWrapper })
         // Label checks (multiple because of legend)
         const labels = screen.getAllByText('Username')
         expect(labels.length).toBeGreaterThan(0)

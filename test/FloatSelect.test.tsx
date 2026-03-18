@@ -10,7 +10,7 @@ const FormWrapper = ({ children }: { children: React.ReactNode }) => (
 
 describe('FloatSelect', () => {
     it('should render select and label', () => {
-        render(<FloatSelect placeholder="Select Item" />, { wrapper: FormWrapper })
+        render(<FloatSelect placeholder="Select Item" label="Select Item" />, { wrapper: FormWrapper })
         expect(screen.getAllByText('Select Item')[0]).toBeInTheDocument()
     })
 
@@ -19,6 +19,7 @@ describe('FloatSelect', () => {
         render(
             <FloatSelect
                 placeholder="Select Item"
+                label="Select Item"
                 options={[{ label: 'Option 1', value: '1' }]}
                 onChange={onChange}
                 open
@@ -32,6 +33,7 @@ describe('FloatSelect', () => {
         render(
             <FloatSelect
                 placeholder="Select Item"
+                label="Select Item"
                 value="1"
                 options={[{ label: 'Option 1', value: '1' }]}
             />,

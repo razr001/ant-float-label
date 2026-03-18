@@ -1,19 +1,14 @@
 import { AutoComplete, AutoCompleteProps } from "antd";
-import {
-  useCallback,
-} from "react";
-import { FloatingLabelBox, FloatingLabelBoxProps } from "../FloatingLabelBox";
+import { useCallback } from "react";
+import { FloatingLabelBox } from "../FloatingLabelBox";
 import "./index.css";
 import { useValueHandle } from "../../hook/useValueHandle";
 import type { InputProps } from "antd";
-
-export interface FloatAutoCompleteProps extends AutoCompleteProps {
-  required?: boolean
-  labelBoxProps?: FloatingLabelBoxProps;
-}
+import { FloatComponentProps } from "../../types";
 
 export function FloatAutoComplete({
   placeholder,
+  label,
   onFocus,
   onBlur,
   value,
@@ -25,8 +20,15 @@ export function FloatAutoComplete({
   variant,
   status,
   ...restProps
-}: FloatAutoCompleteProps) {
-  const { hasValue, handleChange, handleBlur, handleFocus, isFocus, formItemStatus } = useValueHandle({
+}: FloatComponentProps<AutoCompleteProps>) {
+  const {
+    hasValue,
+    handleChange,
+    handleBlur,
+    handleFocus,
+    isFocus,
+    formItemStatus,
+  } = useValueHandle({
     id: restProps.id,
     defaultValue,
     value,
@@ -44,18 +46,18 @@ export function FloatAutoComplete({
         onChange(value, option);
       }
     },
-    [onChange]
+    [onChange],
   );
 
   return (
     <FloatingLabelBox
-      label={placeholder}
+      label={label}
       required={required}
       focused={isFocus}
       hasValue={hasValue}
       width={style?.width}
       height={style?.height}
-      status={formItemStatus as InputProps['status']}
+      status={formItemStatus as InputProps["status"]}
       variant={variant}
       {...labelBoxProps}
     >
@@ -66,6 +68,7 @@ export function FloatAutoComplete({
           border: "none",
         }}
         {...restProps}
+        placeholder={isFocus || hasValue ? placeholder : ""}
         variant="borderless"
         onFocus={handleFocus}
         onBlur={handleBlur}
