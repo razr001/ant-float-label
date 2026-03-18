@@ -1,8 +1,8 @@
 .ant-float-label-form-select .ant-select-selector {
-	border: none !important;
-	box-shadow: none !important;
+	border: none;
+	box-shadow: none;
 }
 
 .ant-float-label-form-select{
-	height: auto !important;
+	height: auto;
 }

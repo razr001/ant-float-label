@@ -29,13 +29,15 @@ type Story = StoryObj<typeof FloatPassword>;
 export const Default: Story = {
   args: {
     placeholder: "请输入密码",
+    label: "密码",
     style: { width: 300 },
   },
 };
 
 export const Required: Story = {
   args: {
-    placeholder: "密码（必填）",
+    placeholder: "请输入密码",
+    label: "密码",
     required: true,
     style: { width: 300 },
   },
@@ -43,7 +45,8 @@ export const Required: Story = {
 
 export const WithDefaultValue: Story = {
   args: {
-    placeholder: "密码",
+    placeholder: "请输入密码",
+    label: "密码",
     defaultValue: "123456",
     style: { width: 300 },
   },
@@ -51,7 +54,8 @@ export const WithDefaultValue: Story = {
 
 export const Disabled: Story = {
   args: {
-    placeholder: "禁用状态",
+    placeholder: "请输入密码",
+    label: "密码",
     disabled: true,
     defaultValue: "password",
     style: { width: 300 },
@@ -60,7 +64,8 @@ export const Disabled: Story = {
 
 export const ErrorStatus: Story = {
   args: {
-    placeholder: "密码错误",
+    placeholder: "请输入密码",
+    label: "密码",
     status: "error",
     style: { width: 300 },
   },
@@ -68,7 +73,8 @@ export const ErrorStatus: Story = {
 
 export const Underlined: Story = {
   args: {
-    placeholder: "下划线样式密码",
+    placeholder: "请输入密码",
+    label: "密码",
     variant: "underlined",
     style: { width: 300 },
   },

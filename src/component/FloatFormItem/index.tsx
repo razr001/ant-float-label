@@ -15,18 +15,23 @@ export function FloatFormItem({
   const isRequired = useMemo(() => {
     if (required) return required;
     return rules?.some(
-      (value: any) => value.required !== undefined && value.required !== false
+      (value: any) => value.required !== undefined && value.required !== false,
     );
   }, [required, rules]);
 
   return (
     // noStyle + label hidden: Form.Item handles validation state via context (Form.Item.useStatus)
     // The float components read status from Form.Item.useStatus() hook automatically
-    <Form.Item required={required} rules={rules} {...restProps} label="">
+    <Form.Item
+      required={required}
+      rules={[{ required: isRequired }, ...(rules || [])]}
+      {...restProps}
+      label=""
+    >
       {children
         ? React.cloneElement(children, {
-            placeholder: label,
             required: isRequired,
+            label,
           })
         : children}
     </Form.Item>

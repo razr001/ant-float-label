@@ -3,14 +3,11 @@ import { useCallback } from "react";
 import { FloatingLabelBox, FloatingLabelBoxProps } from "../FloatingLabelBox";
 import { useValueHandle } from "../../hook/useValueHandle";
 import type { InputProps } from "antd";
-
-export interface FloatTimePickerProps extends TimePickerProps {
-  required?: boolean
-  labelBoxProps?: FloatingLabelBoxProps;
-}
+import { FloatComponentProps } from "../../types";
 
 export function FloatTimePicker({
   placeholder,
+  label,
   onFocus,
   onBlur,
   value,
@@ -24,16 +21,22 @@ export function FloatTimePicker({
   variant,
   status,
   ...restProps
-}: FloatTimePickerProps) {
-  const { hasValue, handleChange, handleBlur, handleFocus, isFocus, formItemStatus } =
-    useValueHandle({
-      id: restProps.id?.toString(),
-      defaultValue,
-      value,
-      onFocus,
-      onBlur,
-      status,
-    });
+}: FloatComponentProps<TimePickerProps>) {
+  const {
+    hasValue,
+    handleChange,
+    handleBlur,
+    handleFocus,
+    isFocus,
+    formItemStatus,
+  } = useValueHandle({
+    id: restProps.id?.toString(),
+    defaultValue,
+    value,
+    onFocus,
+    onBlur,
+    status,
+  });
 
   const changeHandler = useCallback<
     Exclude<TimePickerProps["onChange"], undefined>
@@ -44,18 +47,18 @@ export function FloatTimePicker({
         onChange(value, option);
       }
     },
-    [onChange]
+    [onChange],
   );
 
   return (
     <FloatingLabelBox
-      label={placeholder}
+      label={label}
       focused={isFocus}
       hasValue={hasValue}
       width={style?.width}
       height={style?.height}
       required={required}
-      status={formItemStatus as InputProps['status']}
+      status={formItemStatus as InputProps["status"]}
       variant={variant}
       {...labelBoxProps}
     >
@@ -66,6 +69,7 @@ export function FloatTimePicker({
           border: "none",
         }}
         {...restProps}
+        placeholder={isFocus || hasValue ? placeholder : ""}
         variant="borderless"
         onFocus={handleFocus}
         onBlur={handleBlur}
@@ -75,7 +79,6 @@ export function FloatTimePicker({
         onChange={changeHandler}
         mode={mode}
         rootClassName="ant-float-label-form-select"
-        placeholder=""
       />
     </FloatingLabelBox>
   );

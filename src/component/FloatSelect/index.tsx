@@ -1,17 +1,14 @@
 import { Select, SelectProps } from "antd";
 import { useCallback } from "react";
 import "./index.css";
-import { FloatingLabelBox, FloatingLabelBoxProps } from "../FloatingLabelBox";
+import { FloatingLabelBox } from "../FloatingLabelBox";
 import { useValueHandle } from "../../hook/useValueHandle";
 import type { InputProps } from "antd";
-
-export interface FloatSelectProps extends SelectProps {
-  required?: boolean
-  labelBoxProps?: FloatingLabelBoxProps;
-}
+import { FloatComponentProps } from "../../types";
 
 export function FloatSelect({
   placeholder,
+  label,
   onFocus,
   onBlur,
   value,
@@ -25,16 +22,22 @@ export function FloatSelect({
   variant,
   status,
   ...restProps
-}: FloatSelectProps) {
-  const { hasValue, handleChange, handleBlur, handleFocus, isFocus, formItemStatus } =
-    useValueHandle({
-      id: restProps.id?.toString(),
-      defaultValue,
-      value,
-      onFocus,
-      onBlur,
-      status,
-    });
+}: FloatComponentProps<SelectProps>) {
+  const {
+    hasValue,
+    handleChange,
+    handleBlur,
+    handleFocus,
+    isFocus,
+    formItemStatus,
+  } = useValueHandle({
+    id: restProps.id?.toString(),
+    defaultValue,
+    value,
+    onFocus,
+    onBlur,
+    status,
+  });
 
   const changeHandler = useCallback<
     Exclude<SelectProps["onChange"], undefined>
@@ -45,24 +48,25 @@ export function FloatSelect({
         onChange(value, option);
       }
     },
-    [onChange]
+    [onChange],
   );
 
   return (
     <FloatingLabelBox
-      label={placeholder}
+      label={label}
       focused={isFocus}
       hasValue={hasValue}
       width={style?.width}
       height={style?.height}
       required={required}
-      status={formItemStatus as InputProps['status']}
+      status={formItemStatus as InputProps["status"]}
       variant={variant}
       {...labelBoxProps}
     >
       <Select
         style={{ ...style, width: "100%", border: "none" }}
         {...restProps}
+        placeholder={isFocus || hasValue ? placeholder : ""}
         variant="borderless"
         onFocus={handleFocus}
         onBlur={handleBlur}

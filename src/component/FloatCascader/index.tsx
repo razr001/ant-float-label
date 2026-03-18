@@ -3,17 +3,11 @@ import { useCallback } from "react";
 import { FloatingLabelBox, FloatingLabelBoxProps } from "../FloatingLabelBox";
 import { useValueHandle } from "../../hook/useValueHandle";
 import type { InputProps } from "antd";
-
-export interface FloatCascadertProps extends CascaderProps {
-  multiple?: true;
-  required?: boolean;
-  value?: any
-  defaultValue?: any
-  labelBoxProps?: FloatingLabelBoxProps;
-};
+import { FloatComponentProps } from "../../types";
 
 export function FloatCascader({
   placeholder,
+  label,
   onFocus,
   onBlur,
   value,
@@ -25,16 +19,26 @@ export function FloatCascader({
   variant,
   status,
   ...restProps
-}: FloatCascadertProps) {
-  const { hasValue, handleChange, handleBlur, handleFocus, isFocus, formItemStatus } =
-    useValueHandle({
-      id: restProps.id,
-      defaultValue,
-      value,
-      onFocus,
-      onBlur,
-      status,
-    });
+}: FloatComponentProps<CascaderProps> & {
+  multiple?: true;
+  value?: any;
+  defaultValue?: any;
+}) {
+  const {
+    hasValue,
+    handleChange,
+    handleBlur,
+    handleFocus,
+    isFocus,
+    formItemStatus,
+  } = useValueHandle({
+    id: restProps.id,
+    defaultValue,
+    value,
+    onFocus,
+    onBlur,
+    status,
+  });
 
   const changehandler = useCallback(
     (value: any, selectedOptions: any) => {
@@ -43,18 +47,18 @@ export function FloatCascader({
         onChange(value, selectedOptions);
       }
     },
-    [onChange]
+    [onChange],
   );
 
   return (
     <FloatingLabelBox
-      label={placeholder}
+      label={label}
       focused={isFocus}
       hasValue={hasValue}
       width={style?.width}
       height={style?.height}
       required={required}
-      status={formItemStatus as InputProps['status']}
+      status={formItemStatus as InputProps["status"]}
       variant={variant}
       {...labelBoxProps}
     >
@@ -62,6 +66,7 @@ export function FloatCascader({
         style={{ ...style, width: "100%", border: "none" }}
         variant="borderless"
         {...restProps}
+        placeholder={isFocus || hasValue ? placeholder : ""}
         onFocus={handleFocus}
         onBlur={handleBlur}
         value={value}

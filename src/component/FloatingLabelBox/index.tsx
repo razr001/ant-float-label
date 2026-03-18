@@ -12,11 +12,11 @@ export interface FloatingLabelBoxProps {
   children?: React.ReactNode;
   width?: string | number;
   height?: string | number;
-  status?: InputProps['status'];
+  status?: InputProps["status"];
   required?: boolean;
   fieldsetStyle?: React.CSSProperties;
   labelStyle?: React.CSSProperties;
-  variant?: InputProps['variant'];
+  variant?: InputProps["variant"];
 }
 
 export function FloatingLabelBox({
@@ -56,26 +56,28 @@ export function FloatingLabelBox({
   }, [status, token]);
 
   const borderStyleMemo = useMemo(() => {
-    const borderColor = focused ? statusColor.borderColorActive : statusColor.borderColor;
+    const borderColor = focused
+      ? statusColor.borderColorActive
+      : statusColor.borderColor;
     if (variant === "outlined") {
       return {
-        border: '1px solid',
+        border: "1px solid",
         borderColor,
       };
     } else if (variant === "underlined") {
       return {
-        borderBottom: '1px solid',
+        borderBottom: "1px solid",
         borderBottomColor: borderColor,
-        borderTop: 'none',
-        borderLeft: 'none',
-        borderRight: 'none',
+        borderTop: "none",
+        borderLeft: "none",
+        borderRight: "none",
         borderRadius: 0,
       };
     }
     return {
-      border: 'none',
+      border: "none",
       borderSize: 0,
-      borderColor: 'transparent',
+      borderColor: "transparent",
     };
   }, [variant, focused, statusColor]);
 
@@ -109,7 +111,7 @@ export function FloatingLabelBox({
           ...labelStyle,
         }}
       >
-        {required ? (
+        {required && label ? (
           <div style={{ display: "flex", gap: "0.3em", alignItems: "center" }}>
             <span>{label}</span>
             <span style={{ marginTop: "3px" }}>*</span>
@@ -122,7 +124,7 @@ export function FloatingLabelBox({
         style={{
           borderRadius: token.borderRadius,
           ...borderStyleMemo,
-          ...fieldsetStyle
+          ...fieldsetStyle,
         }}
         className="ant-float-label-box-fieldset"
       >

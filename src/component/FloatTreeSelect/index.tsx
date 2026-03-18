@@ -1,16 +1,13 @@
 import { TreeSelect, TreeSelectProps } from "antd";
 import { useCallback } from "react";
-import { FloatingLabelBox, FloatingLabelBoxProps } from "../FloatingLabelBox";
+import { FloatingLabelBox } from "../FloatingLabelBox";
 import { useValueHandle } from "../../hook/useValueHandle";
 import type { InputProps } from "antd";
-
-export interface FloatTreeSelectProps extends TreeSelectProps {
-  required?: boolean;
-  labelBoxProps?: FloatingLabelBoxProps;
-}
+import { FloatComponentProps } from "../../types";
 
 export function FloatTreeSelect({
   placeholder,
+  label,
   onFocus,
   onBlur,
   value,
@@ -23,16 +20,22 @@ export function FloatTreeSelect({
   labelBoxProps,
   status,
   ...restProps
-}: FloatTreeSelectProps) {
-  const { hasValue, handleChange, handleBlur, handleFocus, isFocus, formItemStatus } =
-    useValueHandle({
-      id: restProps.id?.toString(),
-      defaultValue,
-      value,
-      onFocus,
-      onBlur,
-      status,
-    });
+}: FloatComponentProps<TreeSelectProps>) {
+  const {
+    hasValue,
+    handleChange,
+    handleBlur,
+    handleFocus,
+    isFocus,
+    formItemStatus,
+  } = useValueHandle({
+    id: restProps.id?.toString(),
+    defaultValue,
+    value,
+    onFocus,
+    onBlur,
+    status,
+  });
 
   const changeHandler = useCallback(
     (value: any, labelList: React.ReactNode[], extra: any) => {
@@ -41,18 +44,18 @@ export function FloatTreeSelect({
         onChange(value, labelList, extra);
       }
     },
-    [onChange]
+    [onChange],
   );
 
   return (
     <FloatingLabelBox
-      label={placeholder}
+      label={label}
       focused={isFocus}
       hasValue={hasValue}
       width={style?.width}
       height={style?.height}
       required={required}
-      status={formItemStatus as InputProps['status']}
+      status={formItemStatus as InputProps["status"]}
       variant={variant}
       {...labelBoxProps}
     >
@@ -63,6 +66,7 @@ export function FloatTreeSelect({
           border: "none",
         }}
         {...restProps}
+        placeholder={isFocus || hasValue ? placeholder : ""}
         variant="borderless"
         onFocus={handleFocus}
         onBlur={handleBlur}

@@ -41,6 +41,7 @@ const options = [
 export const Default: Story = {
   args: {
     placeholder: "请选择水果",
+    label: "水果",
     options,
     style: { width: 300 },
   },
@@ -49,6 +50,7 @@ export const Default: Story = {
 export const Required: Story = {
   args: {
     placeholder: "请选择（必填）",
+    label: "水果",
     options,
     required: true,
     style: { width: 300 },
@@ -57,7 +59,8 @@ export const Required: Story = {
 
 export const WithDefaultValue: Story = {
   args: {
-    placeholder: "水果",
+    placeholder: "请选择水果",
+    label: "水果",
     options,
     defaultValue: "apple",
     style: { width: 300 },
@@ -67,6 +70,7 @@ export const WithDefaultValue: Story = {
 export const Multiple: Story = {
   args: {
     placeholder: "多选水果",
+    label: "水果",
     options,
     mode: "multiple",
     style: { width: 300 },
@@ -76,6 +80,7 @@ export const Multiple: Story = {
 export const Tags: Story = {
   args: {
     placeholder: "标签模式",
+    label: "水果",
     options,
     mode: "tags",
     style: { width: 300 },
@@ -85,6 +90,7 @@ export const Tags: Story = {
 export const Disabled: Story = {
   args: {
     placeholder: "禁用状态",
+    label: "水果",
     options,
     disabled: true,
     defaultValue: "apple",
@@ -95,6 +101,7 @@ export const Disabled: Story = {
 export const ErrorStatus: Story = {
   args: {
     placeholder: "错误状态",
+    label: "水果",
     options,
     status: "error",
     style: { width: 300 },
@@ -104,6 +111,7 @@ export const ErrorStatus: Story = {
 export const Underlined: Story = {
   args: {
     placeholder: "下划线样式",
+    label: "水果",
     options,
     variant: "underlined",
     style: { width: 300 },

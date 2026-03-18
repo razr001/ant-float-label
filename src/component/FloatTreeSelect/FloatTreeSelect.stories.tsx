@@ -59,6 +59,7 @@ const treeData = [
 export const Default: Story = {
   args: {
     placeholder: "请选择部门",
+    label: "部门",
     treeData,
     style: { width: 300 },
   },
@@ -67,6 +68,7 @@ export const Default: Story = {
 export const Required: Story = {
   args: {
     placeholder: "部门（必填）",
+    label: "部门",
     treeData,
     required: true,
     style: { width: 300 },
@@ -76,6 +78,7 @@ export const Required: Story = {
 export const Multiple: Story = {
   args: {
     placeholder: "多选部门",
+    label: "部门",
     treeData,
     multiple: true,
     style: { width: 300 },
@@ -85,6 +88,7 @@ export const Multiple: Story = {
 export const Checkable: Story = {
   args: {
     placeholder: "勾选部门",
+    label: "部门",
     treeData,
     treeCheckable: true,
     style: { width: 300 },
@@ -94,6 +98,7 @@ export const Checkable: Story = {
 export const Disabled: Story = {
   args: {
     placeholder: "禁用状态",
+    label: "部门",
     treeData,
     disabled: true,
     style: { width: 300 },
@@ -103,6 +108,7 @@ export const Disabled: Story = {
 export const ErrorStatus: Story = {
   args: {
     placeholder: "错误状态",
+    label: "部门",
     treeData,
     status: "error",
     style: { width: 300 },
@@ -112,6 +118,7 @@ export const ErrorStatus: Story = {
 export const Underlined: Story = {
   args: {
     placeholder: "下划线样式",
+    label: "部门",
     treeData,
     variant: "underlined",
     style: { width: 300 },

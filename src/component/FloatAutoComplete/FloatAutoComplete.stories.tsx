@@ -38,6 +38,7 @@ const options = [
 export const Default: Story = {
   args: {
     placeholder: "请输入城市",
+    label: "城市",
     options,
     style: { width: 300 },
   },
@@ -45,7 +46,8 @@ export const Default: Story = {
 
 export const Required: Story = {
   args: {
-    placeholder: "城市（必填）",
+    placeholder: "请输入城市",
+    label: "城市",
     options,
     required: true,
     style: { width: 300 },
@@ -54,7 +56,8 @@ export const Required: Story = {
 
 export const WithDefaultValue: Story = {
   args: {
-    placeholder: "城市",
+    placeholder: "请输入城市",
+    label: "城市",
     options,
     defaultValue: "北京",
     style: { width: 300 },
@@ -63,7 +66,8 @@ export const WithDefaultValue: Story = {
 
 export const Disabled: Story = {
   args: {
-    placeholder: "禁用状态",
+    placeholder: "请输入城市",
+    label: "城市",
     options,
     disabled: true,
     defaultValue: "上海",
@@ -73,7 +77,8 @@ export const Disabled: Story = {
 
 export const ErrorStatus: Story = {
   args: {
-    placeholder: "错误状态",
+    placeholder: "请输入城市",
+    label: "城市",
     options,
     status: "error",
     style: { width: 300 },
@@ -82,7 +87,8 @@ export const ErrorStatus: Story = {
 
 export const Underlined: Story = {
   args: {
-    placeholder: "下划线样式",
+    placeholder: "请输入城市",
+    label: "城市",
     options,
     variant: "underlined",
     style: { width: 300 },
