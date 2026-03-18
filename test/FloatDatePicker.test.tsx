@@ -11,7 +11,7 @@ const FormWrapper = ({ children }: { children: React.ReactNode }) => (
 
 describe('FloatDatePicker', () => {
     it('should render with label', () => {
-        render(<FloatDatePicker placeholder="Birth Date" />, { wrapper: FormWrapper })
+        render(<FloatDatePicker placeholder="Birth Date" label="Birth Date" />, { wrapper: FormWrapper })
         expect(screen.getAllByText('Birth Date')[0]).toBeInTheDocument()
     })
 

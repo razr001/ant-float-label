@@ -11,7 +11,7 @@ const FormWrapper = ({ children }: { children: React.ReactNode }) => (
 
 describe('FloatAutoComplete', () => {
     it('should render with label', () => {
-        render(<FloatAutoComplete placeholder="Search" />, { wrapper: FormWrapper })
+        render(<FloatAutoComplete placeholder="Search" label="Search" />, { wrapper: FormWrapper })
         expect(screen.getAllByText('Search')[0]).toBeInTheDocument()
         expect(screen.getByRole('combobox')).toBeInTheDocument()
     })

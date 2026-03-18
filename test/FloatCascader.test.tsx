@@ -10,7 +10,7 @@ const FormWrapper = ({ children }: { children: React.ReactNode }) => (
 
 describe('FloatCascader', () => {
     it('should render with label', () => {
-        render(<FloatCascader placeholder="Address" options={[]} />, { wrapper: FormWrapper })
+        render(<FloatCascader placeholder="Address" label="Address" options={[]} />, { wrapper: FormWrapper })
         expect(screen.getAllByText('Address')[0]).toBeInTheDocument()
         expect(screen.getByRole('combobox')).toBeInTheDocument()
     })
