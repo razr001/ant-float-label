@@ -28,14 +28,12 @@ export function FloatTimePicker({
     handleBlur,
     handleFocus,
     isFocus,
-    formItemStatus,
   } = useValueHandle({
     id: restProps.id?.toString(),
     defaultValue,
     value,
     onFocus,
     onBlur,
-    status,
   });
 
   const changeHandler = useCallback<
@@ -58,7 +56,7 @@ export function FloatTimePicker({
       width={style?.width}
       height={style?.height}
       required={required}
-      status={formItemStatus as InputProps["status"]}
+      status={status as InputProps["status"]}
       variant={variant}
       {...labelBoxProps}
     >

@@ -1,5 +1,6 @@
 import { Form, FormItemProps } from "antd";
 import React, { useMemo } from "react";
+import { FormStatus } from "./FormStatus";
 
 export interface FloatFormItemProps extends FormItemProps {
   children?: React.ReactElement<any>;
@@ -20,20 +21,15 @@ export function FloatFormItem({
   }, [required, rules]);
 
   return (
-    // noStyle + label hidden: Form.Item handles validation state via context (Form.Item.useStatus)
-    // The float components read status from Form.Item.useStatus() hook automatically
     <Form.Item
       required={required}
       rules={[{ required: isRequired }, ...(rules || [])]}
       {...restProps}
       label=""
     >
-      {children
-        ? React.cloneElement(children, {
-            required: isRequired,
-            label,
-          })
-        : children}
+      <FormStatus required={isRequired} label={label}>
+        {children}
+      </FormStatus>
     </Form.Item>
   );
 }

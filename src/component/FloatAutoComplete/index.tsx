@@ -27,14 +27,12 @@ export function FloatAutoComplete({
     handleBlur,
     handleFocus,
     isFocus,
-    formItemStatus,
   } = useValueHandle({
     id: restProps.id,
     defaultValue,
     value,
     onFocus,
     onBlur,
-    status,
   });
 
   const changeHandler = useCallback<
@@ -57,7 +55,7 @@ export function FloatAutoComplete({
       hasValue={hasValue}
       width={style?.width}
       height={style?.height}
-      status={formItemStatus as InputProps["status"]}
+      status={(status) as InputProps["status"]}
       variant={variant}
       {...labelBoxProps}
     >

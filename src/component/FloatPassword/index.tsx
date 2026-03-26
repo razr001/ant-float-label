@@ -30,14 +30,12 @@ export function FloatPassword({
     handleBlur,
     handleFocus,
     isFocus,
-    formItemStatus,
   } = useValueHandle({
     id: restProps.id,
     defaultValue,
     value,
     onFocus,
     onBlur,
-    status,
   });
 
   const changeHanlder = useCallback<
@@ -60,7 +58,7 @@ export function FloatPassword({
       width={style?.width}
       height={style?.height}
       required={required}
-      status={formItemStatus as InputProps["status"]}
+      status={status as InputProps["status"]}
       variant={variant}
       {...labelBoxProps}
     >

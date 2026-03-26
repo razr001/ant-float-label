@@ -32,14 +32,12 @@ export function FloatRangePicker({
     handleBlur,
     handleFocus,
     isFocus,
-    formItemStatus,
   } = useValueHandle({
     id: restProps.id?.toString(),
     defaultValue,
     value,
     onFocus,
-    onBlur,
-    status,
+    onBlur
   });
 
   const changeHandler = useCallback<
@@ -75,7 +73,7 @@ export function FloatRangePicker({
       width={style?.width}
       height={style?.height}
       required={required}
-      status={formItemStatus as InputProps["status"]}
+      status={status as InputProps["status"]}
       variant={variant}
       {...labelBoxProps}
     >
