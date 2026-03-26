@@ -27,14 +27,12 @@ export function FloatDatePicker({
     handleBlur,
     handleFocus,
     isFocus,
-    formItemStatus,
   } = useValueHandle({
     id: restProps.id,
     defaultValue,
     value,
     onFocus,
     onBlur,
-    status,
   });
 
   const changeHandler = useCallback<
@@ -56,7 +54,7 @@ export function FloatDatePicker({
       hasValue={hasValue}
       width={style?.width}
       height={style?.height}
-      status={formItemStatus as InputProps["status"]}
+      status={(status) as InputProps["status"]}
       required={required}
       variant={variant}
       {...labelBoxProps}

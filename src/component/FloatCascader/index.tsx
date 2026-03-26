@@ -1,6 +1,6 @@
 import { Cascader, CascaderProps } from "antd";
 import { useCallback } from "react";
-import { FloatingLabelBox, FloatingLabelBoxProps } from "../FloatingLabelBox";
+import { FloatingLabelBox } from "../FloatingLabelBox";
 import { useValueHandle } from "../../hook/useValueHandle";
 import type { InputProps } from "antd";
 import { FloatComponentProps } from "../../types";
@@ -30,14 +30,12 @@ export function FloatCascader({
     handleBlur,
     handleFocus,
     isFocus,
-    formItemStatus,
   } = useValueHandle({
     id: restProps.id,
     defaultValue,
     value,
     onFocus,
     onBlur,
-    status,
   });
 
   const changehandler = useCallback(
@@ -58,7 +56,7 @@ export function FloatCascader({
       width={style?.width}
       height={style?.height}
       required={required}
-      status={formItemStatus as InputProps["status"]}
+      status={(status) as InputProps["status"]}
       variant={variant}
       {...labelBoxProps}
     >

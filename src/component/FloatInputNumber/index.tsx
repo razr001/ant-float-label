@@ -27,14 +27,12 @@ export function FloatInputNumber({
     handleBlur,
     handleFocus,
     isFocus,
-    formItemStatus,
   } = useValueHandle({
     id: restProps.id,
     defaultValue,
     value,
     onFocus,
     onBlur,
-    status,
   });
 
   const changeHanlder = useCallback<
@@ -57,7 +55,7 @@ export function FloatInputNumber({
       width={style?.width}
       height={style?.height}
       required={required}
-      status={formItemStatus as InputProps["status"]}
+      status={{status} as unknown as InputProps["status"]}
       variant={variant}
       {...labelBoxProps}
     >

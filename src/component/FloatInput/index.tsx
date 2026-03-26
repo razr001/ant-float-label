@@ -26,14 +26,12 @@ export function FloatInput({
     handleBlur,
     handleFocus,
     isFocus,
-    formItemStatus,
   } = useValueHandle({
     id: restProps.id,
     defaultValue,
     value,
     onFocus,
     onBlur,
-    status,
   });
 
   const changeHandler = useCallback<React.ChangeEventHandler<HTMLInputElement>>(
@@ -54,7 +52,7 @@ export function FloatInput({
       width={style?.width}
       height={style?.height}
       required={required}
-      status={formItemStatus as InputProps["status"]}
+      status={(status) as InputProps["status"]}
       variant={variant}
       {...labelBoxProps}
     >

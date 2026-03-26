@@ -23,21 +23,14 @@ export function FloatSelect({
   status,
   ...restProps
 }: FloatComponentProps<SelectProps>) {
-  const {
-    hasValue,
-    handleChange,
-    handleBlur,
-    handleFocus,
-    isFocus,
-    formItemStatus,
-  } = useValueHandle({
-    id: restProps.id?.toString(),
-    defaultValue,
-    value,
-    onFocus,
-    onBlur,
-    status,
-  });
+  const { hasValue, handleChange, handleBlur, handleFocus, isFocus } =
+    useValueHandle({
+      id: restProps.id?.toString(),
+      defaultValue,
+      value,
+      onFocus,
+      onBlur,
+    });
 
   const changeHandler = useCallback<
     Exclude<SelectProps["onChange"], undefined>
@@ -59,7 +52,7 @@ export function FloatSelect({
       width={style?.width}
       height={style?.height}
       required={required}
-      status={formItemStatus as InputProps["status"]}
+      status={(status) as InputProps["status"]}
       variant={variant}
       {...labelBoxProps}
     >
