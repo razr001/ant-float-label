@@ -134,7 +134,7 @@ export function FloatingLabelBox({
             maxWidth: focused || hasValue ? "100%" : "0.01px",
           }}
         >
-          {label}
+          {`${label}${required ? "*" : ""}`}
         </legend>
       </fieldset>
     </div>
