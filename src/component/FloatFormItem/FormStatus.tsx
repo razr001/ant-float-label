@@ -5,6 +5,7 @@ export function FormStatus({
   children,
   required,
   label,
+  ...props
 }: {
   children?: React.ReactElement<any>;
   required?: boolean;
@@ -16,16 +17,17 @@ export function FormStatus({
     <>
       {children
         ? React.Children.map(children, (child) => {
-            if (React.isValidElement(child)) {
-              const status = (child.props as any).status;
-              const newProps:any = {
-                required,
-                label,
-                status: status || formItemStatus,
-              };
-              return React.cloneElement(child, newProps);
-            }
-          })
+          if (React.isValidElement(child)) {
+            const status = (child.props as any).status;
+            const newProps: any = {
+              required,
+              label,
+              status: status || formItemStatus,
+              ...props
+            };
+            return React.cloneElement(child, newProps);
+          }
+        })
         : null}
     </>
   );
