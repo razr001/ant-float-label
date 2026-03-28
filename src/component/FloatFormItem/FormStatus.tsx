@@ -17,8 +17,8 @@ export function FormStatus({ children, required, label, onChange, ...props }: Re
 								status: status || formItemStatus,
                 ...props,
 								onChange:(event:any)=>{
-                  onChange(event);
-                  onValueChange(event);
+                  onChange && onChange(event);
+                  onValueChange && onValueChange(event);
                 }
 							};
 							return React.cloneElement(child, newProps);

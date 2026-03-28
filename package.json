@@ -1,6 +1,6 @@
 {
   "name": "ant-float-label",
-  "version": "2.2.5",
+  "version": "2.2.6",
   "description": "Antd 6 form style similar to MUI",
   "main": "dist/index.js",
   "module": "dist/index.js",
