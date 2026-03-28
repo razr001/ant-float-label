@@ -1,4 +1,4 @@
-import { Form, FormItemProps } from "antd";
+import { Form } from "antd";
 import React from "react";
 
 export function FormStatus({ children, required, label, onChange, ...props }: Record<string, any>) {
@@ -15,6 +15,7 @@ export function FormStatus({ children, required, label, onChange, ...props }: Re
 								required,
 								label,
 								status: status || formItemStatus,
+                ...props,
 								onChange:(event:any)=>{
                   onChange(event);
                   onValueChange(event);
