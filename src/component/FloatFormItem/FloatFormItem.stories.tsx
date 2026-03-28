@@ -37,32 +37,34 @@ export const WithInput: Story = {
 };
 
 export const WithValidation: Story = {
-  render: () => (
-    <Form style={{ width: 400 }}>
-      <FloatFormItem
-        label="用户名"
-        name="username"
-        rules={[{ required: true, message: "请输入用户名" }]}
-      >
-        <FloatInput />
-      </FloatFormItem>
-      <FloatFormItem
-        label="邮箱"
-        name="email"
-        rules={[
-          { required: true, message: "请输入邮箱" },
-          { type: "email", message: "请输入有效的邮箱地址" },
-        ]}
-      >
-        <FloatInput />
-      </FloatFormItem>
-      <Form.Item>
-        <Button type="primary" htmlType="submit">
-          提交
-        </Button>
-      </Form.Item>
-    </Form>
-  ),
+  render: () => {
+    return (
+      <Form style={{ width: 400 }}>
+        <FloatFormItem
+          label="用户名"
+          name="username"
+          rules={[{ required: true, message: "请输入用户名" }]}
+        >
+          <FloatInput onChange={(v)=>{console.log(v)}} />
+        </FloatFormItem>
+        <FloatFormItem
+          label="邮箱"
+          name="email"
+          rules={[
+            { required: true, message: "请输入邮箱" },
+            { type: "email", message: "请输入有效的邮箱地址" },
+          ]}
+        >
+          <FloatInput />
+        </FloatFormItem>
+        <Form.Item>
+          <Button type="primary" htmlType="submit">
+            Submit
+          </Button>
+        </Form.Item>
+      </Form>
+    );
+  },
 };
 
 export const WithSelect: Story = {

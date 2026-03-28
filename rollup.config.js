@@ -25,6 +25,7 @@ export default [{
     {
       format: "es",
       file: "dist/index.js",
+      sourcemap: false,
       banner
     }
   ]
