@@ -1,13 +1,11 @@
 import { Form } from "antd";
-import React from "react";
+import FloatFormStatusContext from "./FloatFormStatusContext";
 
-export function FormStatus({ children, required, label, onChange, ...props }: Record<string, any>) {
-	// Get status from Form.Item context (antd 6 standard approach)
-	const { status: formItemStatus } = Form.Item.useStatus();
-
+export function FormStatus({ children, ...props }: Record<string, any>) {
+	const { status } = Form.Item.useStatus();
 	return (
-		<>
-			{children
+		<FloatFormStatusContext.Provider value={{ formItemProps: props, status }}>
+			{/* {children
 				? React.Children.map(children, (child) => {
 						if (React.isValidElement(child)) {
 							const { status, onChange:onValueChange } = (child.props as any);
@@ -24,7 +22,8 @@ export function FormStatus({ children, required, label, onChange, ...props }: Re
 							return React.cloneElement(child, newProps);
 						}
 					})
-				: null}
-		</>
+				: null} */}
+			{children}
+		</FloatFormStatusContext.Provider>
 	);
 }
