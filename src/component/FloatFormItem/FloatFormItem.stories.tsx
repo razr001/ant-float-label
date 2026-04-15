@@ -5,6 +5,7 @@ import { FloatInput } from "../FloatInput";
 import { FloatSelect } from "../FloatSelect";
 import { FloatDatePicker } from "../FloatDatePicker";
 import { FloatInputNumber } from "../FloatInputNumber";
+import { useEffect } from "react";
 
 const meta: Meta<typeof FloatFormItem> = {
 	title: "Components/FloatFormItem",
@@ -38,8 +39,14 @@ export const WithInput: Story = {
 
 export const WithValidation: Story = {
 	render: () => {
+		const [form] = Form.useForm();
+
+		useEffect(()=>{
+			form.setFieldValue("username", "test value");
+		}, [])
+
 		return (
-			<Form style={{ width: 400 }}>
+			<Form style={{ width: 400 }} form={form}>
 				<FloatFormItem
 					label="用户名"
 					name="username"

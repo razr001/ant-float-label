@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "module": "ES2020",
+    "module": "es2020",
     "declaration": true,
     "removeComments": false,
     "emitDecoratorMetadata": true,
@@ -10,9 +10,10 @@
     "sourceMap": false,
     "inlineSourceMap": false,
     "outDir": "dist",
+    "rootDir": "./src",
     "skipLibCheck": true,
     "strict": true,
-    "moduleResolution":"Node",
+    "moduleResolution": "bundler",
     "esModuleInterop":true,
     "allowImportingTsExtensions": false,
     "jsx": "react-jsx"

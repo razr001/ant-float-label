@@ -1,7 +1,7 @@
 import { Form, theme } from "antd";
 import type { InputProps } from "antd";
 import "./index.css";
-import { useContext, useMemo } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import FloatFormStatusContext from "../FloatFormItem/FloatFormStatusContext";
 import React from "react";
 
@@ -23,7 +23,7 @@ export interface FloatingLabelBoxProps {
 
 export function FloatingLabelBox({
 	focused,
-	hasValue,
+	hasValue: propsHasValue,
 	label: propsLabel,
 	children,
 	width,
@@ -38,9 +38,20 @@ export function FloatingLabelBox({
 	const { formItemProps, status: formItemStatus } = useContext(
 		FloatFormStatusContext,
 	) as any;
+	const [hasValue, setHasValue] = useState(propsHasValue);
 	const currStatus = status || formItemStatus;
 	const required = propsRequired || formItemProps?.required;
 	const label = propsLabel || formItemProps?.label;
+
+	const form = Form.useFormInstance();
+
+	useEffect(()=>{
+		if(form && formItemProps && !propsHasValue){
+			setHasValue(!!form.getFieldValue(formItemProps.id))
+		}else{
+			setHasValue(propsHasValue);
+		}
+	}, [propsHasValue, formItemProps])
 
 	const statusColor = useMemo(() => {
 		const colors = {
